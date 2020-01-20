@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>OneCart</title>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script language="JavaScript" src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="/js/viewfile_script.js" ></script>
+<link rel="stylesheet" href="/css/report.css"/>
+<link rel="stylesheet" href="/fontawesome/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <a class="navbar-brand pb-2" href="#"><img src="/pictures/OneAstonLogo.png" style=" width: 55px; height:55px;  vertical-align: middle;"/>
+  <img src="/pictures/Logo_word.png" style=" width: 165px; height:50px;  vertical-align: middle;"/>  </a>
+  
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+  
+		  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+		    <ul class="navbar-nav ml-auto">
+      
+	       <li class="nav-item"> <img src="/pictures/User_icon.png" style="width: 45px; height:45px; padding-top:13px; padding-right:10px;"/></li> 
+		      <li class="nav-item"> <p th:text="'Hi, ' + ${user} + '!'"  style="color: black; font-family:Tahoma, Geneva, sans-serif; font-size:20px; padding-top:13px; padding-right:5px; "></p> </li>
+		      
+		      	<li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style= " padding-top:19px;"> </a>
+          
+           <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+           <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Home</a>
+           <ul class="dropdown-menu" style="background-color:#f5f5f5;">
+           <li class="dropdown-submenu" ><a class="dropdown-item dropdown-toggle" href="#">OneLibrary</a>
+           <ul class="dropdown-menu" style="background-color:#f5f5f5;">
+           <li><a class="dropdown-item" href="index">Automation Site</a></li>
+                
+           </ul>
+           </li>
+              
+             <!--  <li><a class="dropdown-item" href="#">OneLog</a></li> --> 
+               <li><a class="dropdown-item" href="dashboard">OneReport</a></li>
+               <li><a class="dropdown-item" href="campaign">OneProject</a></li>
+               <li><a class="dropdown-item" href="officerpage">OneAdmin</a></li>
+             
+              <!--  
+              <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Submenu 1</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Subsubmenu1</a></li>
+                  <li><a class="dropdown-item" href="#">Subsubmenu1</a></li>
+                </ul>
+              </li>
+              
+              <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Submenu 2</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Subsubmenu2</a></li>
+                  <li><a class="dropdown-item" href="#">Subsubmenu2</a></li>
+                </ul>
+              </li>
+              -->
+              
+            </ul>
+          </li>
+          
+          <li><a class="dropdown-item" href="/user/accountsetingspage">Account Settings</a></li>
+          <li><a class="dropdown-item" href="#">Logout</a></li>
+                
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+<!-- 
+	 <nav class="navbar navbar-expand-sm navbar-light bg-light" >
+     
+        <div class="collapse navbar-collapse" >
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            
+            <li class="nav-item">
+             <img src="/pictures/OneAstonLogo.png" style=" width: 55px; height:55px;  vertical-align: middle;"/>
+            </li>
+            
+          
+            <li class="nav-item">
+               <img src="/pictures/Logo_word.png" style=" width: 165px; height:50px;  vertical-align: middle;"/>
+            </li>
+            
+            </ul>
+          
+         <ul class="nav navbar-nav navbar-right"> 
+           <li class="nav-item">
+           <img src="/pictures/User_icon.png" style="width: 45px; height:45px; padding-top:13px; padding-right:10px;"/> 
+            	
+          
+           </li>
+           
+         <li class="nav-item"> 
+         <p th:text="'Hi, ' + ${user} + '!'"  style="color: black; font-family:Tahoma, Geneva, sans-serif; font-size:20px; padding-top:13px; padding-right:5px; "></p>
+         </li>
+         
+         
+          <li class="nav-item dropdown dmenu">
+           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style= " padding-top:19px;"> </a>
+          	
+          	<div class= "dropdown-menu sm-menu dropdown-menu-right">
+          	
+          	 <a class="dropdown-item" href="/home">Home</a>
+          	 <a class="dropdown-item" href="/accountsettings">Account Settings</a>
+          	 <a class="dropdown-item" href="/logout">Logout</a>
+          	
+          	</div>
+          </li>
+        </ul>
+          
+    </div>
+ </nav>
+   -->
+
+ 	<div class="row">
+ 	<div class="col-md-1"></div>
+ 		<div class="col-md-10">
+ 			<br/>
+ 			<h2 id="errorText" style="color:red" th:text="${Error}"></h2>
+ 			<h2 id="infoText" style="color:green" th:text="${Info}"></h2>
+ 			<br/>
+ 			<form action="/submitrequest" method="post" id="myForm">
+	 			<div class="panel panel-primary">
+						<div class="panel-heading text-center" style="background-color:#1c2331  ; ">
+						<font color="#1c2331" style=" font-family: Arial Black, Gadget, sans-serif; font-size: 10px;">Automation Site(Existing Template)</font>
+						</div>
+						<div class="panel-body">
+						<p></p>
+	 			
+		 			<table id ="datatable" class="table table-bordered table-striped"  >
+		 				
+		 				<thead class="thead-dark">
+		 					<th>Testcase Number</th>
+		 					<th>Client Name</th>
+		 					<th>Transaction Type</th>
+		 					<th>Description</th>
+		 					<th>Execution Schedule</th>
+		 					<th> Action </th>
+		 				</thead>
+		 				<tbody>
+		 					<tr th:each="data: ${elementList}">
+		 						<td ><input type="text" class="form-control" name="testcase" readonly="readonly" th:value="${data.testCaseNumber}"/></td>
+		 						<td th:text="${data.clientName}"></td>
+		 						<td th:text="${data.transactionType}"></td>
+		 						<td th:text="${data.description}"></td>
+		 						<td><input id="samples" type="datetime-local" name="schedule"/></td>
+		 						
+		 						<td>
+			 						<a th:href="'/editrequestpage/' + ${data.testCaseNumber}" class="btn btn-primary"><i class="fas fa-edit fa-lg"  rel="tooltip" title="Modify"></i> </a>
+		 							<a th:href="'/deleterequest/' + ${data.testCaseNumber}" class="btn btn-danger"><i class="fas fa-trash-alt fa-lg" rel="tooltip" title="Delete"></i></a>
+		 						</td>
+		 					</tr>
+		 				
+		 				</tbody>
+		 			</table>
+		 			<hr/>
+		 			<div style="text-align:right"> 
+		 			<a><button class="btn btn1">Submit Request</button></a>
+		 			</div>
+			 			<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
+			 		</div>
+			 	</div>
+		 	</form>
+		 
+		 </div>
+  	 </div>
+
+  
+  
+  
+</body>
+</html>

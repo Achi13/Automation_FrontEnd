@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Summary</title>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="/js/tap.js"></script> 
+<link rel="stylesheet" href="/css/summary.css"/>
+<link rel="stylesheet" href="/fontawesome/css/all.min.css"/>
+
+</head>
+
+<body>
+<!--  
+<nav class="navbar navbar-expand-md navbar-light bg-dark">
+  <a class="navbar-brand pb-2" href="#"><img src="/pictures/OneAstonLogo.png" style=" width: 55px; height:55px;  vertical-align: middle;"/>
+  <img src="/pictures/oalogoword.png" style=" width: 165px; height:50px;  vertical-align: middle;"/>  </a>
+  
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+  
+		  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+		    <ul class="navbar-nav ml-auto">
+      
+	       <li class="nav-item"> <img src="/pictures/User_icon.png" style="width: 45px; height:45px; padding-top:13px; padding-right:10px;"/></li> 
+		      <li class="nav-item"> <p th:text="'Hi, ' + ${user} + '!'"  style="color: white; font-family:Tahoma, Geneva, sans-serif; font-size:20px; padding-top:13px; padding-right:5px; "></p> </li>
+		      
+		      	<li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style="color:white; padding-top:19px;"> </a>
+          
+           <ul class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdownMenuLink">
+           <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" style="color:white" href="/home">Home</a>
+           <ul class="dropdown-menu bg-dark">
+           <li class="dropdown-submenu" ><a class="dropdown-item " href="/index" style="color:white">OneLibrary</a>
+           
+           </li>
+              
+               <li><a class="dropdown-item" href="/dependenttestcase/setreportlogpage" style="color:white">OneLog</a></li> 
+               <li><a class="dropdown-item" href="/campaign/dashboardpage" style="color:white">OneReport</a></li>
+               <li><a class="dropdown-item" href="/campaign/campaignpage" style="color:white">OneProject</a></li>
+               <li><a class="dropdown-item" href="/user/officerpage" style="color:white">OneAdmin</a></li>
+               <li><a class="dropdown-item" href="/client/createclientpage "><font style="color:white">OneClient</font></a></li>
+                
+              <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Submenu 1</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Subsubmenu1</a></li>
+                  <li><a class="dropdown-item" href="#">Subsubmenu1</a></li>
+                </ul>
+              </li>
+              
+              <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Submenu 2</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Subsubmenu2</a></li>
+                  <li><a class="dropdown-item" href="#">Subsubmenu2</a></li>
+                </ul>
+              </li>
+              
+              
+            </ul>
+          </li>
+          
+          <li><a class="dropdown-item" href="/user/accountsetingspage" style="color:white">Account Settings</a></li>
+          <li><a class="dropdown-item" href="/logout" style="color:white">Logout</a></li>
+                
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+-->
+
+<div class="page-wrapper chiller-theme toggled">
+  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <i class="fas fa-bars"></i>
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+      <div class="sidebar-brand">
+        <a href="#">oneaston automation</a>
+        <div id="close-sidebar">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+            alt="User picture"/>
+        </div>
+        <div class="user-info">
+          <span class="user-name">
+            <strong th:text="${user}" style="text-transform:UPPERCASE"></strong>
+          </span>
+          <span class="user-role">Administrator</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div>
+      <div class="sidebar-menu">
+        <ul>
+          <li class="header-menu">
+            <span>General</span>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/home">
+              <i class="fa fa-tachometer-alt"></i>
+              <span>Views</span>
+            </a>           
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/index">
+              <i class="fa fa-folder"></i>
+              <span>Libraries</span>
+            </a>
+          </li>
+          <li>
+            <a href="/dependenttestcase/setreportlogpage">
+              <i class="fa fa-book"></i>
+              <span>Logs</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/campaign/campaignpage">
+              <i class="far fa-gem"></i>
+              <span>Projects</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/campaign/dashboardpage">
+              <i class="fa fa-chart-line"></i>
+              <span>Reports</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/client/createclientpage">
+              <i class="fa fa-globe"></i>
+              <span>Clients</span>
+            </a>
+          </li>
+          <li class="header-menu">
+            <span>Extra</span>
+          </li>
+         <li>
+            <a href="/user/officerpage">
+              <i class="fa fa-user"></i>
+              <span>Users</span>
+            </a>
+          </li>
+          <li>
+            <a href="/calendar">
+              <i class="fa fa-calendar"></i>
+              <span>Calendar</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <a href="#">
+        <i class="fa fa-bell" rel="tooltip" title="Notification" style="cursor:pointer;"></i>
+      </a>
+      <a href="#">
+        <i class="fa fa-envelope" rel="tooltip" title="Message" style="cursor:pointer;"></i>      
+      </a>
+      <a href="/user/accountsetingspage">
+        <i class="fa fa-cog" rel="tooltip" title="Account Settings" style="cursor:pointer;"></i>
+      </a>
+      <a href="/logout">
+        <i class="fa fa-power-off" rel="tooltip" title="Logout" style="cursor:pointer;"></i>
+      </a>
+    </div>
+  </nav>
+  
+	<main class="page-content">
+	  	<div class="container-fluid">	
+			<div class="container">
+				<div class="mt-5 mb-5 text-center">		
+				</div>
+				<ul class="step d-flex flex-nowrap">
+			  <li class="step-item ">
+			    <a href="/client" class=""><font style="color: white">Step 1</font> 
+			     <p></p><font style="color:white"><b> Client Registration </b></font></a>
+			  </li>
+			   <li class="step-item ">
+			    <a href="/logincredential" class=""><font style="color: white">Step 2</font>
+			    <p></p><font style="color:white"><b> Login Credential </b></font> </a> 
+			  </li>
+			  <li class="step-item ">
+				    <a href="/webaddress" class=""><font style="color: white">Step 3</font>
+				    <p></p> <font style="color:white"><b>Login Header</b></font> </a>
+				  </li>
+			  <li class="step-item ">
+			    <a href="/tap" class=""><font style="color: white">Step 4</font>
+			    <p></p><font style="color:white"><b> Tap Connection</b></font> </a>
+			  </li>
+			  <li class="step-item active">
+			    <a href="#!" class=""><font style="color: white">Step 5</font>
+			    <p></p><font style="color:white"><b> Summary</b></font> </a>
+			  </li>
+			</ul> 
+		</div>
+
+	<br/> <br/>
+		
+		<div class="row">	
+			<div class="container">
+				<div class="card bg-dark">
+					<div class="card-header"  style="background-color:#1f2122;"><font size="4" style="color:white;" th:text="${clientName}"></font> </div>
+						<div class="card-body" th:each="webAddress, iter : ${webAddressList}">
+						<div class="form-inline">
+								<div class="col-md-4">
+									<p><font style="color:white;" th:text="${iter.index + 1} + '. &nbsp;'"> </font><font style="color:white;" th:text="'URL: ' + ${webAddress.url}"> &nbsp; </font></p>
+								</div>
+							<div class="col-md-1"></div>
+								<div class="col-md-2">
+									<p><font style="color:white;" th:text="'Name: ' + ${webAddress.name}"> &nbsp; </font></p>
+								</div>
+							<div class="col-md-1"></div>
+								<div class="col-md-4">
+								<p><font style="color:white;" th:text="'Description: ' + ${webAddress.description}"> &nbsp; </font></p>
+								</div>
+						</div>
+					<div class="card " style="background-color: #1f2d37;">
+						<div class="card-header"  style="background-color:#1f2122;"><font style="color:white;">Login credential: &nbsp;</font></div>
+							<div class="card-body">
+							  
+						<p></p>
+						 
+						 <div class="row" th:each="loginCredential : ${loginCredentialList}">
+						 	<th:block th:if="${loginCredential.webAddress == webAddress.url}">
+							 	<div class="col-sm-1"></div>
+								   <label for="Webpath" class="col-sm-2 col-form-label"> <b> Username: &nbsp;</b> </label>
+								     <div class="col-sm-3 col-form-label"><label th:text="${loginCredential.username}"></label></div> 
+								   
+								    <div class="col-sm-2 col-form-label">
+								      <label for="Webpath"><b>Password: &nbsp;</b>  </label> </div>
+								      
+								       <div class="col-sm-3 col-form-label">
+								      <label th:text="${loginCredential.password}"> </label> </div>
+								   
+								</th:block>
+							</div>	  	  	      
+						<br/> 
+					</div>
+				 </div>
+				 
+				 <p></p>
+				 
+				 <div class="card " style="background-color: #1f2d37;" th:if="${tapLoginAccountList != null}">
+						<div class="card-header"  style="background-color:#1f2122;"><font style="color:white;">Tap Server Credential: &nbsp;</font></div>
+							<div class="card-body">
+						<th:block th:each="tapLogin : ${tapLoginAccountList}">  
+						<p></p>
+						 <div class=" row" th:if="${tapLogin.webAddress == webAddress.url}">
+						 	<div class="col-sm-1"></div>
+							   <label for="Webpath" class="col-sm-2 col-form-label"> 
+							     <b> Hostname: &nbsp;</b>  </label>
+							    <label th:text="${tapLogin.hostname}"></label>
+							  
+							  </div>
+						
+						 <div class=" row" th:if="${tapLogin.webAddress == webAddress.url}">
+						 	<div class="col-sm-1"></div>
+							   <label for="Webpath" class="col-sm-2 col-form-label"> 
+							    <b> Username: &nbsp;</b>  </label>
+								<label th:text="${tapLogin.username}"></label>
+							  </div>
+							  
+							  <div class=" row" th:if="${tapLogin.webAddress == webAddress.url}">
+						 	<div class="col-sm-1"></div>
+							   <label for="Webpath" class="col-sm-2 col-form-label"> 
+							    <b> PPK File: &nbsp;</b>  </label>
+								<label th:text="${tapLogin.ppkFilepath}"></label>
+							  </div>
+							</th:block> 	      
+						   <br/>  
+						</div>
+					 </div>	
+					<br/>
+				</div>
+			 </div>
+		   </div>	
+		</div>
+		 	<br/>
+			 <div class="container">
+				<div style="text-align: right; ">
+				
+					  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#success_tic">Verify</button>
+					  <input type="reset" name="submit" value="Reset" class=" btn btn-danger" />
+		   		</div>
+		   	</div>
+	<br/>
+			
+<!-- Modal Success -->
+	<div id="success_tic" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-dialog-centered modal-lg">    
+			<div class="modal-content bg-dark" >    
+			    <div class="page-body bg">
+			    	<div class="head">  <br/> 
+			    <a href="/client/confirmsummary"></a>	
+			      <h4 style="margin-top:5px;">Click confirm to register client</h4>
+			    	</div>
+				  <h1 style="text-align:center;">
+				  	<div class="checkmark-circle">
+				  	<div class="background"></div>
+				  	<div class="checkmark draw"></div>
+				</div></h1>
+			  </div>
+			  <br/>
+			  <div class="modal-footer">
+				 <a href="/client/confirmsummary"> <button class="btn btn-secondary"> Confirm </button></a>
+					 	
+					 	 </div>
+					</div>
+				</div>
+		  	</div>
+		</div>
+	</main>
+</div>	
+						
+</body>
+</html>

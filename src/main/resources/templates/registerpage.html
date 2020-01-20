@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Insert title here</title>
+
+<meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="/fontawesome/css/all.min.css"/>
+<!--<link rel="stylesheet" href="/css/securityofficerpage.css"/>  -->
+
+<style>
+
+body{
+
+	background-image: url("/pictures/Home_bg.png");
+	background-size:cover;
+	overflow-x:hidden; 
+}
+</style>
+
+</head>
+
+
+<body>
+		
+		
+		<nav class="navbar navbar-expand-sm navbar-light bg-light" >
+     
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+     
+        <div class="collapse navbar-collapse" >
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            
+            <li class="nav-item">
+             <img src="/pictures/OneAstonLogo.png" style=" width: 55px; height:55px;  vertical-align: middle;"/>
+            </li>
+            
+          
+            <li class="nav-item">
+               <img src="/pictures/Logo_word.png" style=" width: 165px; height:50px;  vertical-align: middle;"/>
+            </li>
+            
+            </ul>
+          
+         <ul class="nav navbar-nav navbar-right"> 
+           <li class="nav-item">
+           <img src="/pictures/User_icon.png" style="width: 45px; height:45px; padding-top:13px; padding-right:10px;"/> 
+            	
+          
+           </li>
+           
+         <li class="nav-item"> 
+         <p th:text="'Welcome, ' + ${user} + '!'"  style="color: black; font-family:Tahoma, Geneva, sans-serif; font-size:20px; padding-top:13px; padding-right:5px; "></p>
+         </li>
+         
+         
+          <li class="nav-item dropdown dmenu">
+           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style= " padding-top:19px;"> </a>
+          	
+          	<div class= "dropdown-menu sm-menu dropdown-menu-right">
+          	 
+          	 <a class="dropdown-item" href="/home">Home</a>
+          	 <a class="dropdown-item" href="/user/accountsetingspage">Account Settings</a>
+          	 <a class="dropdown-item" href="/logout">Logout</a>
+          	
+          	</div>
+          </li>
+        </ul>
+          
+    </div>
+ </nav>
+      
+<br/> <br/> <br/> <br/> <br/> <br/>  <br/>			
+		
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3"></div>
+		
+			
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header"  style="background-color:#1C2331;"><font style="color:white">Login Form</font></div>
+					<div class="card-body">
+						<form action="/processupdate" method="POST">
+							<table class="table table-borderless table-sm">
+								<tr>
+									<td><input type="text" th:value="${userinfo.userId}" name="userid" hidden="hidden"/></td>
+								</tr>
+								<tr>
+									<td>User Access: &nbsp;</td>
+									<td>
+										<th:block th:switch="${userinfo.userAccess}">
+											<select class="custom-select" th:case="'user'" name="useraccess">
+												<option value="user" selected="selected">User</option>
+												<option value="superuser">Superuser</option>
+											</select>
+											<select class="custom-select" th:case="'superuser'" name="useraccess">
+												<option value="user">User</option>
+												<option value="superuser" selected="selected">Superuser</option>
+											</select>
+										</th:block>
+									</td>
+									
+								
+								</tr>
+								<tr>
+									<td>Account Status: &nbsp;</td>
+									<td>
+										<th:block th:switch="${userinfo.status}">
+											<select class="custom-select" th:case="'active'" name="status">
+												<option value="active" selected="selected">Active</option>
+												<option value="inactive">Inactive</option>
+											</select>
+											<select class="custom-select" th:case="'inactive'" name="status">
+												<option value="active">Active</option>
+												<option value="inactive" selected="selected">Inactive</option>
+											</select>
+										</th:block>
+									</td>
+									
+								
+								</tr>
+								<tr>
+									<td align="center">Username:  </td>
+									<td><input type="text" name="uname" required="required" class="form-control" th:value="${userinfo.username}" readonly="readonly"/></td>
+								</tr>
+								<tr>
+									<td align="center">Password: </td>
+									<td><input type="password" name="pass" required="required" class="form-control" th:value="${userinfo.password}" /></td>
+								</tr>
+							</table>
+								<div style="text-align:right"> 
+								<input type="submit" value="Update" class=" btn-primary"/>
+								<input type="submit" value="Cancel" class=" btn-danger" />
+								</div>
+						</form>
+					</div>
+				</div>
+			   </div>
+			<div class="col-md-3"></div>
+		</div>
+	</div>
+	
+</body>
+</html>

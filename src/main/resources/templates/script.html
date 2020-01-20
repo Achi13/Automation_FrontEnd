@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Client Registration</title>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="/css/clientpage.css"/>
+<link rel="stylesheet" href="/fontawesome/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="/fontawesome/css/all.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+<script src="/js/client.js"></script>
+<script src="/js/script.js"></script>
+</head>
+<body>
+<!--  
+<nav class="navbar navbar-expand-md navbar-light bg-dark">
+  <a class="navbar-brand pb-2" href="#"><img src="/pictures/OneAstonLogo.png" style=" width: 55px; height:55px;  vertical-align: middle;"/>
+  	<img src="/pictures/oalogoword.png" style=" width: 165px; height:50px;  vertical-align: middle;"/>  </a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+		  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+		   <ul class="navbar-nav ml-auto">
+	       <li class="nav-item"> <img src="/pictures/User_icon.png" style="width: 45px; height:45px; padding-top:13px; padding-right:10px;"/></li> 
+		      <li class="nav-item"> <p th:text="'Hi, ' + ${user} + '!'"  style="color:white; font-family:Tahoma, Geneva, sans-serif; font-size:20px; padding-top:13px; padding-right:5px; "></p> </li>
+		      	<li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style= "color:white; padding-top:19px;"> </a>
+           <ul class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdownMenuLink">
+           <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" style="color:white" href="/home">Home</a>
+           <ul class="dropdown-menu bg-dark">
+           <li class="dropdown-submenu" ><a class="dropdown-item" href="/index" style="color:white">OneLibrary</a></li>  
+               <li><a class="dropdown-item" href="/dependenttestcase/setreportlogpage" style="color:white">OneLog</a></li>  
+               <li><a class="dropdown-item" href="/campaign/dashboardpage" style="color:white">OneReport</a></li>
+               <li><a class="dropdown-item" href="/campaign/campaignpage" style="color:white">OneProject</a></li>
+               <li><a class="dropdown-item" href="/user/officerpage" style="color:white">OneAdmin</a></li>
+               
+              <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Submenu 1</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Subsubmenu1</a></li>
+                  <li><a class="dropdown-item" href="#">Subsubmenu1</a></li>
+                </ul>
+              </li>
+              
+              <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Submenu 2</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Subsubmenu2</a></li>
+                  <li><a class="dropdown-item" href="#">Subsubmenu2</a></li>
+                </ul>
+              </li>
+              
+            </ul>
+          </li>
+          
+          <li><a class="dropdown-item" href="/user/accountsetingspage" style="color:white">Account Settings</a></li>
+          <li><a class="dropdown-item" href="/logout" style="color:white">Logout</a></li>
+                
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+-->
+
+<div class="page-wrapper chiller-theme toggled">
+  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <i class="fas fa-bars"></i>
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+      <div class="sidebar-brand">
+        <a href="#">oneaston automation</a>
+        <div id="close-sidebar">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+            alt="User picture"/>
+        </div>
+        <div class="user-info">
+          <span class="user-name">
+            <strong th:text="${user}" style="text-transform:UPPERCASE"></strong>
+          </span>
+          <span class="user-role">Administrator</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div>
+      <div class="sidebar-menu">
+        <ul>
+          <li class="header-menu">
+            <span>General</span>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/home">
+              <i class="fa fa-tachometer-alt"></i>
+              <span>Views</span>
+            </a>    
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/index">
+              <i class="fa fa-folder"></i>
+              <span>Libraries</span>
+            </a>
+          </li>
+          <li>
+            <a href="/dependenttestcase/setreportlogpage">
+              <i class="fa fa-book"></i>
+              <span>Logs</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/campaign/campaignpage">
+              <i class="far fa-gem"></i>
+              <span>Projects</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/campaign/dashboardpage">
+              <i class="fa fa-chart-line"></i>
+              <span>Reports</span>
+            </a> 
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/client/createclientpage">
+              <i class="fa fa-globe"></i>
+              <span>Clients</span>
+            </a>         
+          </li>
+          <li class="header-menu">
+            <span>Extra</span>
+          </li>
+         <li>
+            <a href="/user/officerpage">
+              <i class="fa fa-user"></i>
+              <span>Users</span>
+            </a>
+          </li>
+          <li>
+            <a href="/calendar">
+              <i class="fa fa-calendar"></i>
+              <span>Calendar</span>
+            </a>
+          </li>    
+        </ul>
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <a href="#">
+        <i class="fa fa-bell" rel="tooltip" title="Notification" style="cursor:pointer;"></i>        
+      </a>
+      <a href="#">
+        <i class="fa fa-envelope" rel="tooltip" title="Message" style="cursor:pointer;"></i> 
+      </a>
+      <a href="/user/accountsetingspage">
+        <i class="fa fa-cog" rel="tooltip" title="Account Settings" style="cursor:pointer;"></i>
+      </a>
+      <a href="/logout">
+        <i class="fa fa-power-off" rel="tooltip" title="Logout" style="cursor:pointer;"></i>
+      </a>
+    </div>
+  </nav>
+
+<br/> <br/>
+
+<main class="page-content">
+  <div class="container-fluid">			
+			
+<!-- SCRIPT PAGE -->
+<form method="post" action="/script/processaddscript" th:if="${checker == false}">
+	<div class="container">
+		<ul class="step d-flex flex-nowrap">
+			 <li class="step-item active">
+				<a href="/client" class="" style="color:white">Step 1
+				  <p></p><font style="size:.9rem; color:white"> <b>Create script</b> </font></a>
+			 </li>
+			<li class="step-item">
+				<a href="#!" class="" >Step 2
+				 <p></p>Script variable </a>
+			</li>
+		</ul> 
+	</div>
+				
+<br/> <br/> 
+
+	<div class="row">	
+		<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="card bg-dark">
+					<div class="card-header" style="background-color:#1f2122;"><font style="color:#1C2331;"></font></div>
+						<div class="card-body">
+						<br/>
+						<div class="col-md-12">	
+							<div class="card-body">				
+								<div class="modal-body bg-dark">
+									<table class="table table-striped table-dark">	
+										<tr>
+											<td style="text-align:center"> <b> Name : </b> </td>
+												<td>
+													<input type="text" name="loginAccountId" th:value="${loginAccountId}" hidden="hidden"/>
+													<input type="text" name="name" required="required" class="form-control"/>
+												</td>
+										</tr>
+										<tr>
+											<td style="text-align:center"> <b> SH File:</b> </td>
+											<td><input onchange="uploadShFile(this)" required="required" type="file" id="shFile" name="shFile"/> </td>
+										</tr>
+										<tr>
+											<td style="text-align:center"> <b> Number of var : &nbsp; </b> </td>
+											<td> <input type="number" name="noOfVar" required="required" class="form-control"/></td>	
+										</tr>
+										<tr>
+											<td style="text-align:center"> <b> Description : &nbsp; </b> </td>
+											<td> <textarea class="form-control" name="description" placeholder="Insert Description Here" required="required"> </textarea> </td>
+										</tr>								
+									</table>
+								</div>				
+							</div>
+						
+					</div>
+				<div class="col-md-1"></div>	
+			
+						   <br/> <br/>  
+						    <div style="text-align: right">
+								  <input type="submit" class=" btn btn-primary" value="Proceed" style="cursor:pointer;"/>
+								  <a href="/script/scriptpage" class="btn btn-danger">Cancel</a>
+					   		</div> 
+					   
+						 </div>
+				 	  </div>
+				   </div>
+				<div class="col-md-1"></div>		
+			</div>
+</form>
+
+<!-- SCRIPT PAGE -->
+<form method="post" action="/script/processaddscriptvariable" th:if="${checker == true}">
+	<div class="container">
+		<ul class="step d-flex flex-nowrap">
+			<li class="step-item ">
+				<a href="/client" class="" style="color:white">Step 1
+				<p></p><font style="size:.9rem; color:white"> <b> Create Script</b> </font></a>
+			</li>
+			<li class="step-item active">
+				<a href="#!" class="" style="color:white">Step 2
+				<p></p> <font style="size:.9rem; color:white"> <b> Script variable</b> </font> </a>
+			</li>
+		</ul> 
+	</div>
+				
+<br/> <br/> 
+
+	<div class="row">	
+		<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="card bg-dark">
+					<div class="card-header" style="background-color:#1f2122;"><font style="color:#1C2331;"></font></div>
+						<div class="card-body">
+						<br/>
+					<div class="col-md-12">
+							
+								<div class="card-body">	
+									<div class="modal-body bg-dark">
+											<input type="text" name="scriptId" th:value="${scriptId}" hidden="hidden"/>
+												<th:block th:each="count : ${noOfVar}">
+													<table class="table table-striped table-dark">	
+														<tr>
+															<td> <b> Name : </b> </td>
+															<td>															
+																<input type="text" name="name" required="required" class="form-control"/>
+															</td>
+															</tr>
+															<tr>
+																<td> <b> Description : &nbsp; </b> </td>
+																<td> <textarea class="form-control" name="description" placeholder="Insert Description Here" required="required"> </textarea> </td>
+															</tr>								
+														</table>
+													</th:block>
+												</div>
+											</div>
+									 	
+								   </div>
+								<div class="col-md-1"></div>	
+							
+						   <br/> <br/>  
+						    <div style="text-align: right">
+						    	  <input type="submit" name="submit" value="Confirm" class="btn btn-primary" />  
+								  <a href="/script/scriptpage" class="btn btn-danger">Cancel</a>
+					   		</div> 
+						 </div>
+				 	  </div>
+				   </div>
+				<div class="col-md-1"></div>		
+			</div>
+			
+			<!-- Modal Success -->
+	<div id="success_tic" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-dialog-centered modal-lg">    
+			<div class="modal-content bg-dark" >    
+			    <div class="page-body bg">
+			    	<div class="head">  <br/> 
+			    <a href="/client/confirmsummary"></a>	
+			      <h4 style="margin-top:5px;"> Variable Successfully Added</h4>
+			      <h5>Click Confirm to Finish</h5>
+			    	</div>
+				  <h1 style="text-align:center;">
+				  	<div class="checkmark-circle">
+				  	<div class="background"></div>
+				  	<div class="checkmark draw"></div>
+				</div></h1>
+			  </div>
+			  <br/>
+			  <div class="modal-footer">
+				
+				  <a href="/dependenttestcase/addstoredvalues"> <button class="btn btn-secondary"> Confirm </button></a>
+			  </div>
+			</div>
+		</div>
+  	</div>
+			
+</form>
+
+
+<!-- CHOOSE SCRIPT DEPENDENT TESTCASE-->
+<form method="post" action="/dependenttestcase/addscripttotestcase" th:if="${checkerTestcase == false}">
+	<div class="container">
+		<ul class="step d-flex flex-nowrap">
+			<li class="step-item active">
+				<a href="/client" class="" style="color:white">Step 1
+				 <p></p><font style="size:.9rem; color:white"> <b> Choose script</b> </font></a>
+			</li>
+			<li class="step-item ">
+				<a href="#!" class="" style="color:white">Step 2
+				<p></p> Script variable </a>
+			</li>
+		</ul> 
+	</div>		
+	
+
+		<div class="row">	
+			<div class="col-md-1"></div>
+				<div class="col-md-10">
+					<div class="card bg-dark">
+						<div class="card-header" style="background-color:#1f2122;"><font style="color:#1C2331;"></font></div>
+							<div class="card-body">
+							<br/>
+				<div class="col-md-12">
+					<div class="card-body">
+						<div class="modal-body bg-dark">
+							
+							<font style="color:white;"> <b>Note:</b> Step 2 is mandatory only for scripts with registered variables. </font>
+								<p></p>
+									<table class="table table-striped table-dark">	
+										<tr>
+										<td style="text-align:center"> <b> Choose script : </b> </td>
+										<td>
+											<input type="text" name="testcaseNumber" th:value="${testcaseNumber}" hidden="hidden"/>
+											<input name="scriptId" list="script" class="form-control" required="required" />
+											<datalist id="script"> 
+											<option th:each="script : ${scriptList}" th:value="${script.scriptId}" th:text="${script.name} + '-' + ${script.description}"></option>									
+											</datalist>
+										</td>
+									</tr>							
+								</table>						
+						</div>
+					</div>							
+				 </div>
+					<div class="col-md-1"></div>		
+						   <br/> <br/>  
+					<div style="text-align: right">
+						<input type="submit" class=" btn btn-primary" value="Proceed" style="cursor:pointer;"/>
+					    <input type="reset" name="submit" value="Cancel" class="btn btn-danger" />
+					</div> 				   
+					 </div>
+				</div>
+			</div>
+		<div class="col-md-1"></div>		
+	</div>				
+</form>
+	
+	
+<!--Script Variable DEPENDENT TESTCASE-->
+	
+<form method="post" action="/dependenttestcase/addstoredvalues" th:if="${checkerTestcase == true}">
+	<div class="container">
+		<ul class="step d-flex flex-nowrap">
+			<li class="step-item ">
+				<a href="/client" class="" style="color:white">Step 1
+				<p></p><font style="size:.9rem; color:white"> <b>Choose Script</b> </font></a>
+			</li>
+			<li class="step-item active ">
+				 <a href="#!" class="" style="color:white">Step 2
+				 <p></p><font style="size:.9rem; color:white"> <b>Script variable</b> </font> </a>
+			</li>
+		</ul> 
+	</div>		
+			<br/> <br/> 
+		<div class="row">	
+			<div class="col-md-1"></div>
+				<div class="col-md-10">
+					<div class="card bg-dark">
+						<div class="card-header" style="background-color:#1f2122;"><font style="color:#1C2331;"></font></div>
+							<div class="card-body">
+						
+				<div class="col-md-12">
+					<div class="card-body">
+						<div class="modal-body bg-dark">
+							<th:block th:each="scriptVariable : ${scriptVariableList}">
+								<table class="table table-striped table-dark">	
+									<tr>
+										<td> <b> Name : </b> </td>
+										<td>
+											<input type="text" th:value="${scriptVariable.name}" readonly="readonly" class="form-control"/>
+										</td>
+									</tr>
+									<tr>
+										<td> <b> Description : &nbsp; </b> </td>
+										<td> <input th:value="${scriptVariable.description}" type="text" readonly="readonly" class="form-control"/></td>	
+									</tr>
+									<tr>
+										<td> <b> Input : &nbsp; </b> </td>
+										<td> <input required="required" type="text" name="input" class="form-control"/></td>
+									</tr>								
+								</table>
+							</th:block>
+						</div>
+					</div>							
+			 </div>
+					<div class="col-md-1"></div>		
+						   <br/> <br/>  
+					<div style="text-align: right">
+						<input type="submit" name="submit" value="Confirm" class="btn btn-primary" />
+					    <input type="reset" name="submit" value="Cancel" class="btn btn-danger" />
+					</div> 				   
+					 </div>
+				</div>
+			</div>
+		<div class="col-md-1"></div>		
+	</div>
+	
+	<!-- Modal Success -->
+	<div id="success_tic" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-dialog-centered modal-lg">    
+			<div class="modal-content bg-dark" >    
+			    <div class="page-body bg">
+			    	<div class="head">  <br/> 
+			    <a href="/client/confirmsummary"></a>	
+			      <h4 style="margin-top:5px;"> Script Successfully Attached</h4>
+			      <h5>Click Confirm to Finish</h5>
+			    	</div>
+				  <h1 style="text-align:center;">
+				  	<div class="checkmark-circle">
+				  	<div class="background"></div>
+				  	<div class="checkmark draw"></div>
+				</div></h1>
+			  </div>
+			  <br/>
+			  <div class="modal-footer">
+				
+				  <a href="/dependenttestcase/addstoredvalues"> <button class="btn btn-secondary"> Confirm </button></a>
+						  </div>
+						</div>
+					</div>
+			  	</div>	
+			</form>
+		</div>
+	</main>
+</div>
+
+</body>
+</html>

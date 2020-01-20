@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Insert title here</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>	
+<link rel="stylesheet" href="/fontawesome/css/all.min.css"/>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+<link rel="stylesheet" type="text/css" href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css' />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" th:href="@{/css/calendar.css}"/>
+<script src="/js/calendar.js/"></script>
+</head>
+	
+	<body>
+	
+	<div class="page-wrapper chiller-theme toggled">
+	  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+	    <i class="fas fa-bars"></i>
+	  </a>
+	  <nav id="sidebar" class="sidebar-wrapper">
+	    <div class="sidebar-content">
+	      <div class="sidebar-brand">
+	        <a href="#">oneaston automation</a>
+	        <div id="close-sidebar">
+	          <i class="fas fa-times"></i>
+	        </div>
+	      </div>
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+            alt="User picture"/>
+        </div>
+        <div class="user-info">
+          <span class="user-name">
+            <strong th:text="${user}" style="text-transform:UPPERCASE"></strong> 
+          </span>
+          <span class="user-role">Administrator</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div>
+      <div class="sidebar-menu">
+        <ul>
+          <li class="header-menu">
+            <span>General</span>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/home">
+              <i class="fa fa-tachometer-alt"></i>
+              <span>Views</span>   
+            </a>
+            
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/index">
+              <i class="fa fa-folder"></i>
+              <span>Libraries</span>
+            </a>
+          </li>
+          <li>
+            <a href="/dependenttestcase/setreportlogpage">
+              <i class="fa fa-book"></i>
+              <span>Logs</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/campaign/campaignpage">
+              <i class="far fa-gem"></i>
+              <span>Projects</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/campaign/dashboardpage">
+              <i class="fa fa-chart-line"></i>
+              <span>Reports</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/client/createclientpage">
+              <i class="fa fa-globe"></i>
+              <span>Clients</span>
+            </a>
+          </li>
+          <li class="header-menu">
+            <span>Extra</span>
+          </li>
+         <li>
+            <a href="/user/officerpage">
+              <i class="fa fa-user"></i>
+              <span>Users</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-calendar"></i>
+              <span>Calendar</span>
+            </a>
+          </li>
+         
+        </ul>
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <a href="#">
+        <i class="fa fa-bell" rel="tooltip" title="Notification" style="cursor:pointer;"></i>
+      </a>
+      <a href="#">
+        <i class="fa fa-envelope" rel="tooltip" title="Message" style="cursor:pointer;"></i>
+      </a>
+      <a href="/user/accountsetingspage">
+        <i class="fa fa-cog" rel="tooltip" title="Account Settings" style="cursor:pointer;"></i>
+      </a>
+      <a href="/logout">
+        <i class="fa fa-power-off" rel="tooltip" title="Logout" style="cursor:pointer;"></i>
+      </a>
+    </div>
+  </nav>
+	
+	<main class="page-content">
+ 		<div class="container-fluid">	
+			<div id="calendar" class="panel-default" > </div>
+			
+			<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header" style="background-color:#212121;">
+							<h5 class="modal-title" id="modalTitle">Modal title</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body bg-dark">
+							<div class="form-inline">
+								<div class="col-md-4"> <b>Creator: </b> </div>
+								<div class="col-md-7"><span id="creatorText"></span> </div>
+							</div>
+							<div class="form-inline">
+								<div class="col-md-4"><b>Description: </b></div>
+								<div class="col-md-7"><span id="descriptionText"></span> </div>
+							</div>
+							<hr style="color:white"/>
+							<div class="form-inline">
+								<div class="col-md-4"><b>No. Of Test cases: </b></div>
+								<div class="col-md-7"><span id="testcaseText"></span></div>
+							</div>
+							<div class="form-inline">
+								<div class="col-md-4"><b>Summary: </b></div>
+								<div class="col-md-7"><span id="summaryText"></span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+		</div>
+	</main>
+</div>
+
+</body>
+</html>

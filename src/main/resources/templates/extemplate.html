@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Existing Templates</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script language="JavaScript" src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+<script src="/js/extemplate_script.js" ></script>
+<link rel="stylesheet" href="/css/extemplate.css"/>
+<link rel="stylesheet" href="/fontawesome/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+</head>
+
+<body ng-app="mainBody">
+
+<div class="page-wrapper chiller-theme toggled">
+  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <i class="fas fa-bars"></i>
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+      <div class="sidebar-brand">
+        <a href="#">oneaston automation</a>
+        <div id="close-sidebar">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+            alt="User picture"/>
+        </div>
+        <div class="user-info">
+          <span class="user-name">
+            <strong th:text="${user}" style="text-transform:UPPERCASE"></strong>
+          </span>
+          <span class="user-role">Administrator</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div>
+      <div class="sidebar-menu">
+        <ul>
+          <li class="header-menu">
+            <span>General</span>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/home">
+              <i class="fa fa-tachometer-alt"></i>
+              <span>Views</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/index">
+              <i class="fa fa-folder"></i>
+              <span>Libraries</span>
+            </a>  
+          </li>
+          <li>
+            <a href="/dependenttestcase/setreportlogpage">
+              <i class="fa fa-book"></i>
+              <span>Logs</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/campaign/campaignpage">
+              <i class="far fa-gem"></i>
+              <span>Projects</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/campaign/dashboardpage">
+              <i class="fa fa-chart-line"></i>
+              <span>Reports</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/client/createclientpage">
+              <i class="fa fa-globe"></i>
+              <span>Clients</span>
+            </a>      
+          </li>
+          <li class="header-menu">
+            <span>Extra</span>
+          </li>
+         <li>
+            <a href="/user/officerpage">
+              <i class="fa fa-user"></i>
+              <span>Users</span>
+            </a>
+          </li>
+          <li>
+            <a href="/calendar">
+              <i class="fa fa-calendar"></i>
+              <span>Calendar</span>
+            </a>
+          </li>
+        </ul>
+     </div>
+  </div>
+    <div class="sidebar-footer">
+      <a href="#">
+        <i class="fa fa-bell" rel="tooltip" title="Notification" style="cursor:pointer;"></i>
+      </a>
+      <a href="#">
+        <i class="fa fa-envelope" rel="tooltip" title="Message" style="cursor:pointer;"></i>        
+      </a>
+      <a href="/user/accountsetingspage">
+        <i class="fa fa-cog" rel="tooltip" title="Account Settings" style="cursor:pointer;"></i>
+      </a>
+      <a href="/logout">
+        <i class="fa fa-power-off" rel="tooltip" title="Logout" style="cursor:pointer;"></i>
+      </a>
+    </div>
+  </nav>
+
+<br/> <br/>
+
+<main class="page-content">
+  <div class="container-fluid">	
+	<!-- Start of Table -->
+	<div class="row" ng-controller="mainController">
+		<div class="col-md-12">
+		<!-- ALERT HERE -->
+				<div class="alert alert-success alert-dismissible fade show" th:if="${Info != null}">
+					<b>Success!</b><p th:text="${Info}"> </p>
+				    <button type="button" class="close" data-dismiss="alert">&times;</button>
+				</div>
+			   <input type="text" hidden="hidden" th:value="${userId}" readonly="readonly" id="userId"/>
+				   <div class="panel panel-primary bg-dark">
+					  <div class="panel-heading text-center" style="background-color:#1f2122;">
+						<font color="#1f2122" style=" font-family: Arial Black, Gadget, sans-serif; font-size: 10px;">Automation Site(Existing Template)</font>
+					  </div>
+						<div class="panel-body">
+						   <form action="/templates/processmodifytemplate" method="post">
+							<p></p>			
+						 <table> 
+							<tr>
+								<td style="width:3%"></td>	 
+								<td><font color="white"> <b> Client Name: &nbsp; </b></font>  </td> 
+								<td>
+									<select required="required" name="clientName" id="clientFilter" class="form-control" ng-change="filterWebPath()" ng-model="clientValue">
+										<option th:each="client : ${clientData}" th:value="${client.clientId}" th:text="${client.clientName}"></option>
+									</select>
+								</td>
+								<td style="width:13%"></td>
+								<td><font color="white"> <b> Template Name: &nbsp; </b></font></td>
+								<td>
+									<input required="required" list="templateList" name="templateId" id="templateFilter" class="form-control" autocomplete="off" ng-change="getTemplateData()" ng-model="templateDataValue"/>
+									<datalist id="templateList">
+										<option ng-repeat="templates in templatesData.templatesList" value="{{templates.templateId}}">{{templates.templateName}}</option>
+									</datalist>
+								</td>
+								<td style="width:16%"></td>
+								<td><font color="white"> <b> Public: &nbsp; </b></font> </td>
+								<td ng-switch="templateData.templateData[0].templateId.public">
+									<div class="switchToggle1" ng-switch-when="true">
+									   	<input type="checkbox" id="isPublic" onchange="changeIsPublic()" checked="checked"/>
+									    <label for="isPublic"></label>
+									    <input type="hidden" value="true" name="isPublic" id="isPublicVal"/>
+									</div>
+									<div class="switchToggle1" ng-switch-when="false">
+									   	<input type="checkbox" id="isPublic" onchange="changeIsPublic()"/>
+									    <label for="isPublic"></label>
+									    <input type="hidden" value="false" name="isPublic" id="isPublicVal"/>
+									</div>
+								</td>		
+							</tr>
+						</table>
+						<hr/>				
+							<table id="elementTable" class="table table-striped table-dark">
+								<thead class="thead-dark">
+									<th style="width: 200px;">Label</th>
+									<th>Web Element Nature</th>
+									<th>Nature of Action</th>
+									<th>Trigger Enter</th>
+									<th>Screen Capture</th>
+									<th>Web Element Name</th>
+									<th>Action</th>
+								</thead>
+								<tbody>
+									<!-- /////////////////////////DATA 1///////////////////////////////    -->
+									<tr ng-repeat="element in templateData.templateData track by $index">
+										<!-- Notes -->
+										<td>
+											<input type="text" name="templateDataId" value="{{element.templateDataId}}" readonly="readonly" hidden="hidden"/>
+											<input type="text" name="label" value="{{element.label}}" class="form-control"/>
+										</td>
+										<!-- Web Element Nature -->
+										<td ng-switch="element.webElementNature">
+											
+											<select ng-switch-when="name" name="webElementNature" class="custom-select">
+												<option value="name" selected="selected">name</option>
+												<option value="class">class</option>
+												<option value="id">id</option>
+												<option value="xpath">xpath</option>
+											</select>
+											<select ng-switch-when="class" name="webElementNature" class="custom-select">
+												<option value="name">name</option>
+												<option value="class" selected="selected">class</option>
+												<option value="id">id</option>
+												<option value="xpath">xpath</option>
+											</select>
+											<select ng-switch-when="id" name="webElementNature" class="custom-select">
+												<option value="name">name</option>
+												<option value="class">class</option>
+												<option value="id" selected="selected">id</option>
+												<option value="xpath">xpath</option>
+											</select>
+											<select ng-switch-when="xpath" name="webElementNature" class="custom-select">
+												<option value="name">name</option>
+												<option value="class">class</option>
+												<option value="id">id</option>
+												<option value="xpath" selected="selected">xpath</option>
+											</select>
+										</td>
+										<!-- Nature of Action -->
+										<td ng-switch="element.natureOfAction">
+											<select ng-switch-when="click" name="natureOfAction" class="custom-select" ng-attr-id="{{'natureOfAction' + ($index+1)}}" ng-change="changeInput($index + 1)" ng-model="element.natureOfAction">
+												<option value="click" selected="selected">click</option>
+												<option value="input">input</option>
+												<option value="hover">hover</option>
+												<option value="compare">compare</option>
+												<option value="select">select</option>
+												<option value="datepicker">datepicker</option>
+											</select>
+											<select ng-switch-when="input" name="natureOfAction" class="custom-select" ng-attr-id="{{'natureOfAction' + ($index+1)}}" ng-change="changeInput($index + 1)" ng-model="element.natureOfAction">
+												<option value="click">click</option>
+												<option value="input" selected="selected">input</option>
+												<option value="hover">hover</option>
+												<option value="compare">compare</option>
+												<option value="select">select</option>
+												<option value="datepicker">datepicker</option>
+											</select>
+											<select ng-switch-when="hover" name="natureOfAction" class="custom-select" ng-attr-id="{{'natureOfAction' + ($index+1)}}" ng-change="changeInput($index + 1)" ng-model="element.natureOfAction">
+												<option value="click">click</option>
+												<option value="input">input</option>
+												<option value="hover" selected="selected">hover</option>
+												<option value="compare">compare</option>
+												<option value="select">select</option>
+												<option value="datepicker">datepicker</option>
+											</select>
+											<select ng-switch-when="compare" name="natureOfAction" class="custom-select" ng-attr-id="{{'natureOfAction' + ($index+1)}}" ng-change="changeInput($index + 1)" ng-model="element.natureOfAction">
+												<option value="click">click</option>
+												<option value="input">input</option>
+												<option value="hover">hover</option>
+												<option value="compare" selected="selected">compare</option>
+												<option value="select">select</option>
+												<option value="datepicker">datepicker</option>
+											</select>
+											<select ng-switch-when="select" name="natureOfAction" class="custom-select" ng-attr-id="{{'natureOfAction' + ($index+1)}}" ng-change="changeInput($index + 1)" ng-model="element.natureOfAction">
+												<option value="click">click</option>
+												<option value="input">input</option>
+												<option value="hover">hover</option>
+												<option value="compare">compare</option>
+												<option value="select" selected="selected">select</option>
+												<option value="datepicker">datepicker</option>
+											</select>
+											<select ng-switch-when="datepicker" name="natureOfAction" class="custom-select" ng-attr-id="{{'natureOfAction' + ($index+1)}}" ng-change="changeInput($index + 1)" ng-model="element.natureOfAction">
+												<option value="click">click</option>
+												<option value="input">input</option>
+												<option value="hover">hover</option>
+												<option value="compare">compare</option>
+												<option value="select">select</option>
+												<option value="datepicker" selected="selected">datepicker</option>
+											</select>
+										</td>
+										
+										<!-- Trigger Enter -->
+										<td>
+											<div ng-switch="element.triggerEnter">
+												<input ng-switch-when="true" type="checkbox" value="true" ng-attr-id="{{'triggerEnterValue' + ($index+1)}}" checked="checked" ng-change="changeTriggerEnter($index + 1)" ng-model="element.triggerEnter" style="width:25px;height:25px;"/>	
+												<input ng-switch-when="false" type="checkbox" value="false" ng-attr-id="{{'triggerEnterValue' + ($index+1)}}" ng-change="changeTriggerEnter($index + 1)" ng-model="element.triggerEnter" style="width:25px;height:25px;"/>
+											</div>
+											<div ng-switch="element.triggerEnter">
+												<input ng-switch-when="true" type="text" value="true" name="triggerEnterValue" ng-attr-id="{{'triggerEnterValue' + ($index+1)}}" hidden="hidden" style="width:25px;height:25px;"/>
+												<input ng-switch-when="false" type="text" value="false" name="triggerEnterValue" ng-attr-id="{{'triggerEnterValue' + ($index+1)}}" hidden="hidden" style="width:25px;height:25px;"/>
+											</div>
+										</td>
+										<!-- Screen Capture -->
+										<td>
+											<div ng-switch="element.screenCapture">
+												<input ng-switch-when="true" type="checkbox" value="true" ng-attr-id="{{'screenCapture' + ($index+1)}}" checked="checked" ng-change="changeScreenCapture($index + 1)" ng-model="element.screenCapture" style="width:25px;height:25px;"/>
+												<input ng-switch-when="false" type="checkbox" value="false" ng-attr-id="{{'screenCapture' + ($index+1)}}" ng-change="changeScreenCapture($index + 1)" ng-model="element.screenCapture" style="width:25px;height:25px;"/>
+											</div>
+											<div ng-switch="element.screenCapture">
+												<input ng-switch-when="true" type="text" value="true" name="screenCaptureValue" ng-attr-id="{{'screenCaptureValue' + ($index+1)}}" hidden="hidden" style="width:25px;height:25px;"/>
+												<input ng-switch-when="false" type="text" value="false" name="screenCaptureValue" ng-attr-id="{{'screenCaptureValue' + ($index+1)}}" hidden="hidden" style="width:25px;height:25px;"/>
+											</div>
+										</td>
+										<!-- Web Element -->
+										<td>
+											<input type="text" name="webElementName" value="{{element.webElementName}}" class="form-control" ng-attr-id="{{'webElementName' + ($index+1)}}" hidden="hidden"/>
+										 	<div align="center" class="switchToggle1"><input type="checkbox" ng-click="toggleWebElementName($index + 1)" ng-attr-id="{{'showWebElementName' + ($index+1)}}"/><label ng-attr-for="{{'showWebElementName' + ($index + 1)}}"></label></div>
+										</td> 
+										<td>
+											<div onclick="addRow(this)" class="addButton btn btn-primary"><i class="fas fa-plus"></i></div>
+											<div onclick="removeRow(this)" class="removeButton btn btn-danger"><i class="fas fa-trash-alt"></i></div>
+										</td>
+										
+									</tr>
+								</tbody>
+							</table>
+						<hr/>
+								<div style="text-align:right;padding-right:10px;">
+									<input type="submit" name="submit" value="Verify" class="btn btn1"/>
+									<a href="/index" class="btn btn1">Cancel</a>
+								</div>
+								<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
+							</form>
+							<br/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</div>	
+		
+	
+</body>
+</html>

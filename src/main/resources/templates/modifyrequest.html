@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Modify Test case</title>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script language="JavaScript" src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+<script src="/js/extemplate_script.js" ></script>
+<link rel="stylesheet" href="/css/modifyrequestpage.css"/>
+<link rel="stylesheet" href="/fontawesome/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+<style>
+	
+	.datepicker {
+    position: relative;
+    color: white;
+    height: 37px;
+	}
+	
+	.datepicker:before {
+	    position: absolute;
+	    top: 3px; left: 3px;
+	    content: attr(data-date);
+	    display: inline-block;
+	    color: black;
+	}
+	
+	.datepicker::-webkit-datetime-edit, input::-webkit-inner-spin-button, input::-webkit-clear-button {
+	    display: none;
+	}
+	
+	.datepicker::-webkit-calendar-picker-indicator {
+	    position: absolute;
+	    top: 3px;
+	    right: 0;
+	    color: black;
+	    opacity: 1;
+	}
+		
+</style>
+<script>
+
+//document.getElementById("serverImport").onchange = function(){
+//	var importValue = document.getElementById("serverImportVal");
+//	if(this.checked == true){
+//		importValue.value="yes";
+//	}else{
+//		importValue.value="no";
+//	}
+	
+//}
+
+function changeInputValue(){
+	var serverImport = document.getElementById("serverImport");
+	var serverImportVal = document.getElementById("serverImportVal");
+	if(serverImport.checked == true){
+		serverImportVal.value = "on";
+		console.log(serverImportVal.value);
+	}else{
+		serverImportVal.value = "off";
+		console.log(serverImportVal.value);
+	}
+}
+function changeSeverity(){
+	var ignoreSeverity = document.getElementById("ignoreSeverity");
+	var ignoreSeverityVal = document.getElementById("ignoreSeverityVal");
+	
+	if(ignoreSeverity.checked == true){
+		ignoreSeverityVal.value = "on";
+		console.log(ignoreSeverityVal.value);
+	}else{
+		ignoreSeverityVal.value = "off";
+		console.log(ignoreSeverityVal.value);
+	}
+}
+
+
+</script>
+
+</head>
+
+<body>
+
+	
+	
+ <nav class="navbar navbar-expand-sm navbar-light bg-light" >
+     
+        <div class="collapse navbar-collapse" >
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            
+            <li class="nav-item">
+             <img src="/pictures/OneAstonLogo.png" style=" width: 55px; height:55px;  vertical-align: middle;"/>
+            </li>
+            
+          
+            <li class="nav-item">
+               <img src="/pictures/Logo_word.png" style=" width: 165px; height:50px;  vertical-align: middle;"/>
+            </li>
+            
+            </ul>
+          
+         <ul class="nav navbar-nav navbar-right"> 
+           <li class="nav-item">
+           <img src="/pictures/User_icon.png" style="width: 45px; height:45px; padding-top:13px; padding-right:10px;"/> 
+            	
+          
+           </li>
+           
+         <li class="nav-item"> 
+         <p th:text="'Hi, ' + ${user} + '!'"  style="color: black; font-family:Tahoma, Geneva, sans-serif; font-size:20px; padding-top:13px; padding-right:5px; "></p>
+         </li>
+         
+         
+          <li class="nav-item dropdown dmenu">
+           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style= " padding-top:19px;"> </a>
+          	
+          	<div class= "dropdown-menu sm-menu dropdown-menu-right">
+          	
+          	 <a class="dropdown-item" href="/home">Home</a>
+          	 <a class="dropdown-item" href="/user/accountsetingspage">Account Settings</a>
+          	 <a class="dropdown-item" href="/logout">Logout</a>
+          	
+          	</div>
+          </li>
+        </ul>
+          
+    </div>
+ </nav>
+  	
+  	<br/>
+	
+	<!-- Start of Table -->
+	<h3 style="color:green;" id="infoText" align="center" th:text="${Info}"></h3>
+	
+	
+		<div class="row">
+		<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="panel panel-primary">
+					<div class="panel-heading text-center" style="background-color:#1c2331  ; ">
+					<font color="#1c2331" style=" font-family: Arial Black, Gadget, sans-serif; font-size: 10px;">Automation Site(Existing Template)</font>
+					</div>
+					<div class="panel-body">
+						
+						<form action="/verifymodify" method="post">
+						
+					<p></p>
+						
+	
+						<table> 
+								<tr>
+								
+								<td><b> Testcase Number: &nbsp; </b></td>
+								<td><input class="form-control" type="text" readonly="readonly" name="testcase" th:value="${footerDataList.testcaseNumber}"/></td>
+								<td><input class="form-control" type="text" readonly="readonly" hidden="hidden" name="assignedAccount" th:value="${footerDataList.assignedAccount}"/></td>
+								<td><input class="form-control" type="text" readonly="readonly" hidden="hidden" name="sender" th:value="${footerDataList.sender}"/></td>
+								
+								<td style="width:100px"> </td>
+								
+								<td> <b>  Client Name: &nbsp; </b> </td> 
+									<td>
+										<!--  
+										<select name="clientName">
+											<option value="cmbsg">CMBSG</option>
+										</select>
+										-->
+										<input type="text" readonly="readonly" th:value="${footerDataList.clientName}" class="form-control" name="clientName"/>
+									</td>
+								
+									<td style="width:50px"> </td>
+									
+								
+								<!-- 
+								<td> Existing Template: &nbsp; </td>
+								
+								<td style="width:200px"> 
+									<select class="custom-select" name="file" id="file">
+										<option th:each="data: ${fileinfo}" th:text="${data.fileName}" th:value="${data.fileLoc}"></option>
+									</select> 
+											
+								</td> -->
+								<td>
+									<input type="text" readonly="readonly" th:value="${footerDataList.transactionType}" class="form-control" name="transactiontype"/>
+								</td>
+								
+								
+								<td style="width:90px"> </td>
+								
+									<td>Server import: &nbsp; </td>
+									<th:block th:switch="${footerDataList.serverImport}">
+										<td th:case="'on'">
+											<div class="switchToggle1">
+								    			<input type="checkbox" id="serverImport" onchange="changeInputValue()" checked="checked"/>
+								    			<label for="serverImport"></label>
+											</div>
+											<input type="text" name="serverImport" value="on" hidden="hidden" id="serverImportVal"/>
+										</td>
+										<td th:case="'off'">
+											<div class="switchToggle1">
+								    			<input type="checkbox" id="serverImport" onchange="changeInputValue()"/>
+								    			<label for="serverImport"></label>
+											</div>
+											<input type="text" name="serverImport" value="off" hidden="hidden" id="serverImportVal"/>
+										</td>
+									</th:block>
+									
+								<td style="width:90px"> </td>
+								
+									<td>Ignore Severity: &nbsp; </td>
+									<th:block th:switch="${footerDataList.ignoreSeverity}">
+										<td th:case="'on'">
+											<div class="switchToggle1">
+								    			<input type="checkbox" id="ignoreSeverity" onchange="changeSeverity()" checked="checked"/>
+								    			<label for="ignoreSeverity"></label>
+											</div>
+											<input type="text" name="severity" value="on" hidden="hidden" id="ignoreSeverityVal"/>
+										</td>
+										<td th:case="'off'">
+											<div class="switchToggle1">
+								    			<input type="checkbox" id="ignoreSeverity" onchange="changeSeverity()"/>
+								    			<label for="ignoreSeverity"></label>
+											</div>
+											<input type="text" name="severity" value="off" hidden="hidden" id="ignoreSeverityVal"/>
+										</td>
+									</th:block>
+									
+									</tr>
+									
+							</table>
+							
+							<hr/>	
+											
+							<table id ="datatable" class="table table-bordered table-striped">
+							  
+								<thead class="thead-dark">
+									<th style="width: 200px;">Notes</th>
+									<th>Web Element Nature</th>
+									<th>Nature of Action</th>
+									<th>Trigger Enter</th>
+									<th>Screen Capture</th>
+									<th>Input Output Value</th>
+									<th>Web Element Name</th>
+								</thead>
+								<tbody>
+									<!-- /////////////////////////DATA 1///////////////////////////////    -->
+									<tr th:each="element, iter: ${dataList}" th:id="'row' + ${(iter.index)+1}">
+										<!-- Notes -->
+										<td><input type="text" name="notes" th:value="${element.notes}" class="form-control"/></td>
+										<!-- Web Element Nature -->
+										<td>
+											<th:block th:switch="${element.webElementNature}">
+												<select name="webElementNature" class="custom-select" th:case="'name'">
+													<option value="name" selected="selected">name</option>
+													<option value="class">class</option>
+													<option value="id">id</option>
+													<option value="xpath">xpath</option>
+												</select>
+												<select name="webElementNature" class="custom-select" th:case="'class'">
+													<option value="name">name</option>
+													<option value="class" selected="selected">class</option>
+													<option value="id">id</option>
+													<option value="xpath">xpath</option>
+												</select>
+												<select name="webElementNature" class="custom-select" th:case="'id'">
+													<option value="name">name</option>
+													<option value="class">class</option>
+													<option value="id" selected="selected">id</option>
+													<option value="xpath">xpath</option>
+												</select>
+												<select name="webElementNature" class="custom-select" th:case="'xpath'">
+													<option value="name">name</option>
+													<option value="class">class</option>
+													<option value="id">id</option>
+													<option value="xpath" selected="selected">xpath</option>
+												</select>
+											</th:block>
+										</td>
+										<!-- Nature of Action -->
+										<td>
+											<th:block th:switch="${element.natureOfAction}">
+												<select th:case="'click'" name="natureOfAction" class="custom-select" th:id="'natureOfAction' + ${(iter.index)+1}" th:onchange="'javascript:changeInput(' + ${(iter.index)+1} + ')'">
+													<option value="click" selected="selected">click</option>
+													<option value="input">input</option>
+													<option value="hover">hover</option>
+													<option value="compare">compare</option>
+													<option value="select">select</option>
+													<option value="datepicker">datepicker</option>
+												</select>
+												<select th:case="'input'" name="natureOfAction" class="custom-select" th:id="'natureOfAction' + ${(iter.index)+1}" th:onchange="'javascript:changeInput(' + ${(iter.index)+1} + ')'">
+													<option value="click">click</option>
+													<option value="input" selected="selected">input</option>
+													<option value="hover">hover</option>
+													<option value="compare">compare</option>
+													<option value="select">select</option>
+													<option value="datepicker">datepicker</option>
+												</select>
+												<select th:case="'hover'" name="natureOfAction" class="custom-select" th:id="'natureOfAction' + ${(iter.index)+1}" th:onchange="'javascript:changeInput(' + ${(iter.index)+1} + ')'">
+													<option value="click">click</option>
+													<option value="input">input</option>
+													<option value="hover" selected="selected">hover</option>
+													<option value="compare">compare</option>
+													<option value="select">select</option>
+													<option value="datepicker">datepicker</option>
+												</select>
+												<select th:case="'compare'" name="natureOfAction" class="custom-select" th:id="'natureOfAction' + ${(iter.index)+1}" th:onchange="'javascript:changeInput(' + ${(iter.index)+1} + ')'">
+													<option value="click">click</option>
+													<option value="input">input</option>
+													<option value="hover">hover</option>
+													<option value="compare" selected="selected">compare</option>
+													<option value="select">select</option>
+													<option value="datepicker">datepicker</option>
+												</select>
+												<select th:case="'select'" name="natureOfAction" class="custom-select" th:id="'natureOfAction' + ${(iter.index)+1}" th:onchange="'javascript:changeInput(' + ${(iter.index)+1} + ')'">
+													<option value="click">click</option>
+													<option value="input">input</option>
+													<option value="hover">hover</option>
+													<option value="compare">compare</option>
+													<option value="select" selected="selected">select</option>
+													<option value="datepicker">datepicker</option>
+												</select>
+												<select th:case="'datepicker'" name="natureOfAction" class="custom-select" th:id="'natureOfAction' + ${(iter.index)+1}" th:onchange="'javascript:changeInput(' + ${(iter.index)+1} + ')'">
+													<option value="click">click</option>
+													<option value="input">input</option>
+													<option value="hover">hover</option>
+													<option value="compare">compare</option>
+													<option value="select">select</option>
+													<option value="datepicker" selected="selected">datepicker</option>
+													
+												</select>
+											</th:block>
+										</td>
+										
+										<!-- Trigger Enter -->
+										<td>
+											<th:block th:switch="${element.triggerEnter}">
+												<input th:case="'true'" type="checkbox" value="true" th:id="'triggerEnter' + ${(iter.index)+1}" checked="checked" th:onchange="'javascript:changeTriggerEnter(' + ${(iter.index)+1} + ')'" style="width:25px;height:25px;"/>
+												
+												<input th:case="'false'" type="checkbox" value="false" th:id="'triggerEnter' + ${(iter.index)+1}" th:onchange="'javascript:changeTriggerEnter(' + ${(iter.index)+1} + ')'" style="width:25px;height:25px;"/>
+											</th:block>
+											
+											<th:block th:switch="${element.triggerEnter}">
+												<input th:case="'true'" type="text" value="true" name="triggerEnterValue" th:id="'triggerEnterValue' + ${(iter.index)+1}" hidden="hidden" style="width:25px;height:25px;"/>
+												
+												<input th:case="'false'" type="text" value="false" name="triggerEnterValue" th:id="'triggerEnterValue' + ${(iter.index)+1}" hidden="hidden" style="width:25px;height:25px;"/>
+											</th:block>
+										</td>
+										
+										<!-- Screen Capture -->
+										<td>
+											<th:block th:switch="${element.screenCapture}">
+												<input th:case="'true'" type="checkbox" value="true" th:id="'screenCapture' + ${(iter.index)+1}" checked="checked" th:onchange="'javascript:changeScreenCapture(' + ${(iter.index)+1} + ')'" style="width:25px;height:25px;"/>
+												
+												
+												<input th:case="'false'" type="checkbox" value="false" th:id="'screenCapture' + ${(iter.index)+1}" th:onchange="'javascript:changeScreenCapture(' + ${(iter.index)+1} + ')'" style="width:25px;height:25px;"/>
+											</th:block>
+											
+											<th:block th:switch="${element.screenCapture}">
+												<input th:case="'true'" type="text" value="true" name="screenCaptureValue" th:id="'screenCaptureValue' + ${(iter.index)+1}" hidden="hidden" style="width:25px;height:25px;"/>
+											
+												<input th:case="'false'" type="text" value="false" name="screenCaptureValue" th:id="'screenCaptureValue' + ${(iter.index)+1}" hidden="hidden" style="width:25px;height:25px;"/>
+											</th:block>
+											
+										</td>
+										
+										<!-- Input Output Value -->
+										<td><input type="text" name="inputOutput" class="form-control" th:id="'inputOutput' + ${(iter.index)+1}" th:value="${element.inputOutputValue}"/></td>
+										
+										<!-- Web Element -->
+										<td>
+										
+												<input type="text" name="webElementName" th:value="${element.webElementName}" class="form-control" th:id="'webElementName' + ${(iter.index)+1}" hidden="hidden"/>
+											 	<div class="switchToggle1"><input type="checkbox" th:onclick="'javascript:toggleWebElementName(' + ${(iter.index)+1} + ')'" th:id="'showWebElementName' + ${(iter.index)+1}"/><label th:for="'showWebElementName' + ${(iter.index)+1} "></label></div>
+											 </td>
+									</tr>
+									
+								</tbody>
+								
+							</table>
+							
+						<hr/>
+								
+									<table> 
+								<tr> 
+							<td> <b> Description:</b> </td>
+								<td style="width:20px"></td>
+										<td>
+										 	<textarea class="autoExpand" rows="3" cols="50" name="description" th:text="${description}"> </textarea>
+										</td>
+											<td style="width: 900px"></td>											
+													<td>
+														<input type="submit" name="submit" value="Verify" class="btn btn1" style="color:white"/>
+													</td>
+											</tr>
+	
+											</table>
+		
+							
+							<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
+				
+						</form>
+						
+						
+						<br/>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+	
+	
+	 
+	
+</body>
+</html>
+
+
+
+
+<!-- -->

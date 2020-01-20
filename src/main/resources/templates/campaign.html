@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Campaign</title>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script language="JavaScript" src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="/js/campaign.js" ></script>
+<link rel="stylesheet" href="/css/campaignpage.css"/>
+<link rel="stylesheet" href="/fontawesome/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+</head>
+
+<body>
+
+<div class="page-wrapper chiller-theme toggled">
+  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <i class="fas fa-bars"></i>
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+      <div class="sidebar-brand">
+        <a href="#">oneaston automation</a>
+        <div id="close-sidebar">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+            alt="User picture"/>
+        </div>
+        <div class="user-info">
+          <span class="user-name">
+            <strong th:text="${user}" style="text-transform:UPPERCASE"></strong> 
+          </span>
+          <span class="user-role">Administrator</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div>
+      <div class="sidebar-menu">
+        <ul>
+          <li class="header-menu">
+            <span>General</span>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/home">
+              <i class="fa fa-tachometer-alt"></i>
+              <span>Views</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/index">
+              <i class="fa fa-folder"></i>
+              <span>Libraries</span>
+            </a>  
+          </li>
+          <li>
+            <a href="/dependenttestcase/setreportlogpage">
+              <i class="fa fa-book"></i>
+              <span>Logs</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/campaign/campaignpage">
+              <i class="far fa-gem"></i>
+              <span>Projects</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/campaign/dashboardpage">
+              <i class="fa fa-chart-line"></i>
+              <span>Reports</span>
+            </a>            
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/client/createclientpage">
+              <i class="fa fa-globe"></i>
+              <span>Clients</span>
+            </a>  
+          </li>
+          <li class="header-menu">
+            <span>Extra</span>
+          </li>
+         <li>
+            <a href="/user/officerpage">
+              <i class="fa fa-user"></i>
+              <span>Users</span>
+            </a>
+          </li>
+          <li>
+            <a href="/calendar">
+              <i class="fa fa-calendar"></i>
+              <span>Calendar</span>
+            </a>
+          </li>
+         
+        </ul>
+      </div>
+    </div>
+  
+    <div class="sidebar-footer">
+      <a href="#">
+        <i class="fa fa-bell" rel="tooltip" title="Notification" style="cursor:pointer;"></i>   
+      </a>
+      <a href="#">
+        <i class="fa fa-envelope" rel="tooltip" title="Message" style="cursor:pointer;"></i> 
+      </a>
+      <a href="/user/accountsetingspage">
+        <i class="fa fa-cog" rel="tooltip" title="Account Settings" style="cursor:pointer;"></i>
+      </a>
+      <a href="/logout">
+        <i class="fa fa-power-off" rel="tooltip" title="Logout" style="cursor:pointer;"></i>
+      </a>
+    </div>
+  </nav>
+  
+
+  <br/> <br/>
+ 	
+<main class="page-content">
+  <div class="container-fluid">	
+ 	<div class="row">  	
+ 		<div class="col-md-12">	
+				<div class="alert alert-success alert-dismissible fade show" th:if="${Info != null}">
+					<b>Success!</b><p th:text="${Info}"> </p>
+				    <button type="button" class="close" data-dismiss="alert">&times;</button>
+				</div>
+	 		
+		 		<div class="alert alert-danger alert-dismissible fade show" th:if="${Error != null}">
+				    <strong>Error!</strong> <p th:text="${Error}"> </p>
+				    <button type="button" class="close" data-dismiss="alert">&times;</button>
+				</div>	
+	 		
+	 		
+	 		<div class="panel bg-dark">
+					<div class="panel-heading text-center" style="background-color:#1f2122 ; ">
+						<font color="white" style=" font-family: Arial Black, Gadget, sans-serif; font-size: 20px;"> Project Screen</font>
+					</div>
+					<div class="panel-body">
+					<p></p>
+					<table>
+					<tr>
+						<td>  
+							<form class="form-inline">
+					            <div class="btn-group navbar-btn" style="padding-left:10px" >
+					                <button class="btn btn" style="background-color:#10316b"><font style="color:white">Project</font></button>
+					             	<button class="btn btn" disabled="disabled"  style="background-color:#0097a7 "><font style="color:white">Stream</font></button> 
+					                <button class="btn btn" disabled="disabled" style="background-color:#546e7a"><font style="color:white">Category</font></button>
+					                <button class="btn btn"  disabled="disabled" style="background-color:#607d8b "><font style="color:white">Testcases</font></button>
+					            </div>      
+					        </form>
+						</td>
+					 <td style ="width:52%"></td>
+					<td> <i class="fas fa-play-circle" style="color:#039be5"></i><font style ="font-size:13px">&nbsp;Executing </font> &nbsp; </td>
+					<td> <i class="fas fa-check-circle" style="color:#43a047"></i><font style ="font-size:13px">&nbsp;Success </font> &nbsp; </td>
+					<td> <i class="fas fa-times-circle" style="color:#ef5350"></i><font style ="font-size:13px">&nbsp;Failed </font> &nbsp; </td>
+					<td> <i class="fas fa-question-circle" style="color:#e0e0e0;"></i><font style ="font-size:13px">&nbsp;Ignored </font> &nbsp; </td>
+					<td> <i class="fas fa-exclamation-circle" style="color:#ff8f00"></i><font style ="font-size:13px">&nbsp;Pending </font> &nbsp; </td>
+					
+					</tr>
+					</table>
+
+					<p></p>
+ 					<hr/>
+ 						
+ 				<table id ="datatable" class="table table-striped table-dark"  >
+	 				<thead class="thead-dark">
+	 					<th>Project Name</th>
+	 					<th>Timestamp</th>
+	 					<th>Status</th>
+	 					<th>Execution Schedule</th>
+	 					<th>Description</th>
+	 					<th> Action </th>
+	 				</thead>
+ 				<tbody>
+ 					<tr th:each="campaignData, iter : ${campaignData}">
+ 						<td><a th:href="'/theme/themepage/' + ${campaignData.campaignId}" th:text="${campaignData.campaignName}" style="color:#5ca0d3"></a></td>
+ 						<td th:text="${campaignData.timestamp}"></td>
+ 						<td th:switch="${campaignData.status}">
+ 							<i th:case="'Ignored'" class="fas fa-question-circle fa-lg" style="color:#e0e0e0;"><font style ="font-size:10px"></font></i>
+							<i th:case="'Pending'" class="fas fa-exclamation-circle fa-lg" style="color:#ff8f00"></i><font style ="font-size:10px"></font>
+							<i th:case="'Failed'" class="fas fa-times-circle fa-lg" style="color:#ef5350"></i><font style ="font-size:10px"></font>
+							<i th:case="'Passed'" class="fas fa-check-circle fa-lg" style="color:#43a047"></i><font style ="font-size:10px"></font>
+							<i th:case="'Executing'" class="fas fa-play-circle fa-lg" style="color:#039be5  "></i><font style ="font-size:10px"></font>
+						</td>
+ 						<td>
+ 							<input type="text" th:value="${campaignData.campaignId}" hidden="hidden"/>
+ 							<input th:unless="${campaignData.status == 'Executing'} OR ${campaignData.status == 'Pending'}" onchange="checkValue(this)" type="datetime-local" name="schedule"/>
+ 						</td>
+ 						<td th:text="${campaignData.description}"></td>
+ 						<td>
+ 							<a th:if="${campaignData.status != 'Executing'}" th:href="'/campaign/executecampaign/' + ${campaignData.campaignId}" th:onclick="'javascript:return checkCampaign(' + ${campaignData.success}  + ', ' + ${campaignData.testcaseList} +')'"><button class=" btn-success" rel="tooltip" title="Execute" style="cursor:pointer;"><i class="fas fa-play" ></i></button></a>	
+	 						<a ><button class=" btn-primary" data-toggle="modal" th:attr="data-target='#editModal' + ${campaignData.campaignId}" rel="tooltip" title="Modify" style="cursor:pointer;"><i class="fas fa-edit "></i> </button></a>
+ 							<a th:if="${campaignData.status != 'Executing'}" th:href="'/campaign/archivecampaign/' + ${campaignData.campaignId}"><button class="btn-secondary" rel="tooltip" title="Archive" style="cursor:pointer;"><i class="fas fa-archive fa-lg "></i></button></a>
+ 							<div class="modal fade" th:id="'editModal' + ${campaignData.campaignId}" tabindex="1"  role="dialog" aria-labelledby="editModal" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header" style="background-color:#212121; ">
+											<p class="modal-title"><font style="color:white; size:15px;"><b>  Modify Project Information </b></font></p>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color:white">&times;</span></button>
+										</div>
+										<form method="post" action="/campaign/modifycampaign">
+											<div class="modal-body bg-dark">
+												<table class="table table-striped table-dark">
+													<tr>
+														<td><b>Project ID: </b></td>
+														<td><input type="text" class="form-control" th:value="${campaignData.campaignId}" name="campaignId" readonly="readonly"/></td>
+													</tr>
+													<tr>
+														<td> <b>Project Name: &nbsp;</b> </td>
+														<td><input type="text" class="form-control" th:value="${campaignData.campaignName}" name="campaignName"/></td>
+													</tr>
+													<tr>
+														<td> <b> Description: &nbsp; </b> </td>
+														<td><textarea class="form-control" th:text="${campaignData.description}" name="description"></textarea></td>
+													</tr>
+												</table>
+											</div>
+											<div class="modal-footer bg-dark">
+												<input type="submit" value="Verify" class="btnC btn-primary"/>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+ 						</td>
+ 					</tr>
+ 				</tbody>
+ 			</table>
+ 			<hr/>
+ 					<div style="text-align:right;padding-right:10px">
+ 						<button type="button" class="btn btn1" data-toggle="modal" data-target="#ViewArchiveModal">View Archived</button>
+ 						<button type="button" class="btn btn1" data-toggle="modal" data-target="#registerModal">Create Project</button>
+		 			</div>
+		 			<br/>
+		 			<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
+		 		</div>
+		 	</div>
+		 </div>
+  	 </div>
+
+	<!-- Create Campaign -->
+	  <div class="modal fade" id="registerModal" tabindex="1"  role="dialog" aria-labelledby="registerModal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header" style="background-color:#212121;">
+						<p class="modal-title"><font style="color:white; size:50px;"><b> Create Project </b></font></p>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color:white;">&times; </span></button>
+					</div>
+					<form method="post" action="/campaign/processcreatecampaign">
+						<div class="modal-body bg-dark">
+							<table>	
+								<tr>
+									<td> <b>Project Name: &nbsp;</b> </td>
+									<td><input type="text" class="form-control" name="campaignname" required="required"/></td>
+								</tr>
+								<tr>
+									<td> <b> Description: &nbsp; </b> </td>
+									<td><textarea class="form-control" name="description" required="required" id="enter"> </textarea></td>
+								</tr>
+							</table>
+						</div>
+						<div class="modal-footer bg-dark">
+							<input type="submit" value="Create" class="btnC btn-primary"/>
+							<input type="reset" value="Reset" class="btnR btn-danger"/>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+  
+  <!-- Archive File -->
+	  <div class="modal fade" id="ViewArchiveModal" tabindex="1"  role="dialog" aria-labelledby="registerModal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header" style="background-color:#212121;">
+						<p class="modal-title"><font style="color:white; size:50px;"><b> Archive Files </b></font></p>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color:white;">&times; </span></button>
+					</div>
+					<form method="post" action="/campaign/retrievearchivedcampaign">
+						<div class="modal-body bg-dark">
+							<table id ="datatable" class="table table-striped table-dark">
+								<thead class="thead-dark">
+			 					<th><input type="checkbox"/></th>
+			 					<th>Project Name</th>
+			 					<th>Timestamp</th>	
+			 					<th>Description</th>
+			 					</thead>
+									<tbody>
+				 						<tr th:each="campaignArchive : ${archiveCampaign}">
+					 						<td><input name="campaignId" type="checkbox" th:value="${campaignArchive.campaignId}"/></td>
+					 						<td th:text="${campaignArchive.campaignName}"></td>
+					 						<td th:text="${campaignArchive.timestamp}"></td>
+					 						<td th:text="${campaignArchive.description}"></td>
+				 						</tr>
+			 						</tbody>
+							</table>
+							</div>
+								<div class="modal-footer bg-dark">
+							<input type="submit" value="Retrieve Selected" class="btnC btn-primary"/>
+							<!--  <input type="reset" value="Reset" class="btnR btn-danger"/>-->
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>	
+		
+	</div>
+  
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+<script src="/js/viewfiles_script.js"></script>
+<link rel="stylesheet" href="/fontawesome/css/all.min.css"/>
+<link rel="stylesheet" href="/css/homepage.css"/>
+</head>
+<body>
+	<nav class="navbar navbar-expand-sm navbar-light bg-light" >
+     
+        <div class="collapse navbar-collapse" >
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            
+            <li class="nav-item">
+             <img src="/pictures/OneAstonLogo.png" style=" width: 55px; height:55px;  vertical-align: middle;"/>
+            </li>
+            
+          
+            <li class="nav-item">
+               <img src="/pictures/Logo_word.png" style=" width: 165px; height:50px;  vertical-align: middle; cursor:pointer;" onclick="window.location='/'"/>
+            </li>
+            </ul>
+          
+         <ul class="nav navbar-nav navbar-right"> 
+           <li class="nav-item">
+          		<p th:text="'Welcome, ' + ${user} + '!'"  style="color: black; font-family:Tahoma, Geneva, sans-serif; font-size:20px; padding-top:13px; padding-right:10px; "></p>
+           </li>
+           
+         
+          <li class="nav-item dropdown dmenu">
+           
+           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          		<img src="/pictures/User_icon.png" style="width: 40px; height:40px; vertical-align:middle;"/> </a> 
+
+          	
+          	<div class= "dropdown-menu sm-menu dropdown-menu-right">
+          	
+          	 <a class="dropdown-item" href="/user/accountsetingspage">Account Settings</a>
+          	 <a class="dropdown-item" href="/logout">Logout</a>
+          	
+          	
+          	</div>
+          	
+          </li>
+        </ul>
+          
+        </div>
+  </nav>
+  
+ <div class="container">
+ 	<div class="row">
+ 		<div class="col-md">
+ 			<br/>
+ 			<h2 id="errorText" style="color:red" th:text="${Error}"></h2>
+ 			<h2 id="infoText" style="color:green" th:text="${Info}"></h2>
+ 			<br/>
+ 			<table class="table">
+ 				<thead>
+ 					<th>Testcase Number</th>
+ 					<th>Client Name</th>
+ 					<th>Transaction Type</th>
+ 				</thead>
+ 				<tbody>
+ 					<tr th:each="data: ${elementList}">
+ 						<td th:text="${data.testCaseNumber}"></td>
+ 						<td th:text="${data.clientName}"></td>
+ 						<td th:text="${data.transactionType}"></td>
+ 					</tr>
+ 				
+ 				</tbody>
+ 				<tr>
+ 					<td><a href="/submitrequest"><button class="btn btn-primary">Submit Request</button></a></td>
+ 				</tr>
+ 			</table>
+ 			
+ 		</div>
+ 	</div>
+ </div>
+  
+  
+  
+</body>
+</html>

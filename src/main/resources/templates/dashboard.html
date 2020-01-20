@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Dashboard</title>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> 
+<link rel="stylesheet" href="/css/dashboardpage.css"/>
+<link rel="stylesheet" href="/fontawesome/css/all.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.min.js"></script>
+<script src="/js/dashboard.js"></script>
+</head>
+
+<body ng-app="mainBody">
+<div class="page-wrapper chiller-theme toggled">
+  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <i class="fas fa-bars"></i>
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+      <div class="sidebar-brand">
+        <a href="#" style="font-size:13.5px">oneaston automation</a>
+        <div id="close-sidebar">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+            alt="User picture"/>
+        </div>
+        <div class="user-info">
+          <span class="user-name" style="font-size:13.5px">
+            <strong th:text="${user}" style="text-transform:UPPERCASE"></strong> 
+          </span>
+          <span class="user-role">Administrator</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div>
+      <div class="sidebar-menu">
+        <ul>
+          <li class="header-menu">
+            <span>General</span>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/home">
+              <i class="fa fa-tachometer-alt"></i>
+              <span style="font-size:13.5px">Views</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/index">
+              <i class="fa fa-folder"></i>
+              <span style="font-size:13.5px">Libraries</span>
+            </a> 
+          </li>
+          <li>
+            <a href="/dependenttestcase/setreportlogpage">
+              <i class="fa fa-book"></i>
+              <span style="font-size:13.5px">Logs</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/campaign/campaignpage">
+              <i class="far fa-gem"></i>
+              <span style="font-size:13.5px">Projects</span>
+            </a>
+            
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/campaign/dashboardpage">
+              <i class="fa fa-chart-line"></i>
+              <span style="font-size:13.5px">Reports</span>
+            </a>  
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/client/createclientpage">
+              <i class="fa fa-globe"></i>
+              <span style="font-size:13.5px">Clients</span>
+            </a>            
+          </li>
+          <li class="header-menu">
+            <span>Extra</span>
+          </li>
+         <li>
+            <a href="/user/officerpage">
+              <i class="fa fa-user"></i>
+              <span style="font-size:13.5px">Users</span>
+            </a>
+          </li>
+          <li>
+            <a href="/calendar">
+              <i class="fa fa-calendar"></i>
+              <span style="font-size:13.5px">Calendar</span>
+            </a>
+          </li>
+         
+        </ul>
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <a href="#">
+        <i class="fa fa-bell" rel="tooltip" title="Notification" style="font-size:13px;cursor:pointer" ></i>
+      </a>
+      <a href="#">
+        <i class="fa fa-envelope" rel="tooltip" title="Message" style="font-size:13px;cursor:pointer"></i>  
+      </a>
+      <a href="/user/accountsetingspage">
+        <i class="fa fa-cog" rel="tooltip" title="Account Settings" style="font-size:13px;cursor:pointer"></i>
+      </a>
+      <a href="/logout">
+        <i class="fa fa-power-off" rel="tooltip" title="Logout" style="font-size:13px;cursor:pointer"></i>
+      </a>
+    </div>
+  </nav>
+
+<main class="page-content">
+  <div class="container-fluid">	
+  <div class="row" ng-controller="testcaseController">
+        <div class="col-lg-12">
+            <div id="maincontent">   
+                <div class="col-md-12">
+                    <div class="panel bg-dark">
+                        <div class="panel-heading" style="background-color:#1f2122">
+                            <font color="white"> <h3 class="panel-title"> Dashboard </h3></font>                       
+                        </div>
+    						<p></p>
+
+                        	<!--Failed-->
+								<div class="panel-body">
+			                        <div class="col-md-3">
+			                            <div class="circle-tile">
+                                    <div class="circle-tile-heading red" >
+                                       <h2 class="text-center" style="padding-top:9px"> {{testcasedata[4].failed[1]}}%</h2>
+                                    	</div>
+			                                <div class="circle-tile-content red">
+			                                    <div class="circle-tile-description text-faded">
+			                                    	 <font  style=" font-size: 20px;">{{testcasedata[4].failed[0]}} step(s)</font>                                   
+			                                    </div>    
+				                                    <br/>          			                                            
+	                                    <p class="circle-tile-footer" style="color:#ffcdd2; font-size:15px;">Failed </p>
+	                                </div>
+	                            </div>
+	                        </div>
+	
+	                        <!--Passed-->
+	                         <div class="col-md-3">
+	                            <div class="circle-tile">
+	                   					 <div class="circle-tile-heading green">
+	                                       <h2 class="text-center" style="padding-top:9px"> {{testcasedata[4].passed[1]}}%</h2>
+	                                    	 </div> 
+				                                <div class="circle-tile-content green">
+				                                    <div class="circle-tile-description text-faded">
+				                                        <font style=" font-size: 20px;">{{testcasedata[4].passed[0]}} step(s)</font>
+				                                    </div>
+	                                    			<br/>                  
+	                                    <p class="circle-tile-footer" style="color:#b9f6ca; font-size:15px;" >Passed</p>
+	                                </div>
+	                            </div>
+	                         </div>
+
+
+	                        <!--Pending-->
+	                        <div class="col-md-3">
+	                            <div class="circle-tile"> 
+	                                    <div class="circle-tile-heading orange">
+	                                      <h2 class="text-center" style="padding-top:9px"> {{testcasedata[4].pending[1]}}%</h2>  
+	                                       </div>   
+	                                <div class="circle-tile-content orange">
+	                                    <div class="circle-tile-description text-faded">
+	                                        <font style=" font-size: 20px;">{{testcasedata[4].pending[0]}} step(s)</font>
+	                                    </div>   
+	                                         <br/>
+	                                    <p class="circle-tile-footer" style="color:#ffff8d; font-size:15px;">Pending </p>
+	                                </div>
+	                            </div>
+	                        </div>
+	
+
+                        <!--Total-->
+                        <div class="col-md-3">
+                            <div class="circle-tile">
+                               
+                                    <div class="circle-tile-heading dark-blue">
+                                        <i class="fa fa-building-o fa-fw fa-3x"></i>
+                                        
+                                        <i class="fas fa-poll fa-fw fa-6x"></i>
+                                    </div>
+                               
+                                <div class="circle-tile-content dark-blue">
+                                    <div class="circle-tile-description text-faded">
+                                      <font style=" font-size: 20px;">{{testcasedata[3]}} step(s)</font>
+                                    </div>
+                                     	<br/>
+                                    <p class="circle-tile-footer" style="color: #b1bace; font-size:15px;">Total</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+ 
+        <div class="col-sm-4">
+            <div class="panel bg-dark">
+                <div class="panel-heading" style="background-color: #1f2122">
+                  <font color="white"> <h3 class="panel-title"> Test Cases</h3></font>
+                    <div class="pull-right action-buttons "> </div>          
+                </div>
+                <p></p>
+                		<div class="form-inline ">
+         	 			&nbsp; &nbsp; <b style="font-size:12px">Search: &nbsp; <input type ="text" class="form-control" style="width:200px" id="myInput" onkeyup="searchFunction()"/></b> 	
+            		 	</div>
+          		 <p></p>		
+                <div class="panel-body scroll">  
+                    <ul class="list-group" id="searchList" >
+                        <li class="list-group-item" ng-repeat="record in data" style="background-color:#394349">
+                                <label for="checkbox" ng-click="getTestcaseData(record.testcaseNumber)" style="cursor: pointer; font-size: 12px">
+                                    {{record.testcaseNumber}}
+                                </label>
+                            	<div class="pull-right action-buttons" ng-switch="record.status" >
+		                            <div class="pull-right action-buttons" ng-switch-when="Failed">
+		                                <p style=" font-size: 12px; color:#ef5350">{{record.status}}</p>
+		                            </div> 
+		                            <div class="pull-right action-buttons" ng-switch-when="Passed">
+		                                <font style=" font-size: 12px; color:#43a047">{{record.status}}</font>
+		                            </div>
+		                            <div class="pull-right action-buttons" ng-switch-when="Ignored">
+		                                <font style=" font-size: 12px; color:#e0e0e0;">{{record.status}}</font>
+		                            </div>
+		                            <div class="pull-right action-buttons" ng-switch-when="Pending">
+		                                <font style=" font-size: 12px; color:#ff8f00;">{{record.status}}</font>
+		                            </div>
+	                             	<div class="pull-right action-buttons" ng-switch-when="Executing">
+		                                <font style=" font-size: 12px; color:#039be5;">{{record.status}}</font>
+		                            </div>
+	                          </div>
+	                          
+	                        </li>
+	                    </ul>
+	                </div>
+            </div>
+            
+            <p></p>
+            
+            <!-- Campaign -->
+              <div class="panel bg-dark">
+                <div class="panel-heading" style="background-color:#1f2122">
+                  <font color="white"> <h3 class="panel-title"> Projects</h3></font>
+                    <div class="pull-right action-buttons"></div>
+                </div>
+          <div class="panel-body scroll"> 
+             <div class="tree ">		
+				<ul class="list-group">
+					<li th:each="campaign : ${campaignList}"><a style="color:#000; text-decoration:none;" data-toggle="collapse" th:href="'#' + ${campaign.campaignId} + 'campaign'" aria-expanded="false" ><i class="collapsed"><i class="fas fa-folder fa-2x" style="color:#ffc107;"></i></i>
+						<!-- CAMPAIGN NAME PART  -->
+						<i class="expanded"><i class="far fa-folder-open fa-2x" style="color:#ffc107;"></i></i><font style="color:white;font-size:12px" th:text="${campaign.campaignName}"></font></a>
+							<div class="pull-right action-buttons">
+								<!-- CAMPAIGN STATUS PART -->
+			                  <font th:if="${campaign.status == 'Failed'}" style ="color:#ef5350; font-size:10px" th:text="${campaign.status}"></font>
+			                  <font th:if="${campaign.status == 'Ignored'}" style ="color:#e0e0e0; font-size:10px" th:text="${campaign.status}"></font>
+			                  <font th:if="${campaign.status == 'Pending'}" style ="color:#ff8f00; font-size:10px" th:text="${campaign.status}"></font>
+			                  <font th:if="${campaign.status == 'Passed'}" style ="color:#43a047; font-size:10px" th:text="${campaign.status}"></font>
+			                  <font th:if="${campaign.status == 'Executing'}" style ="color:#039be5; font-size:10px" th:text="${campaign.status}"></font>
+			                 </div>
+							<div th:id="${campaign.campaignId} + 'campaign'" class="collapse hide" >
+					<ul>
+					<li th:each="theme : ${themeList}" class="list-group-item" style="background-color:#394349" th:if="${theme.campaignId.campaignId == campaign.campaignId}">
+						<a style="color:#000; text-decoration:none;" data-toggle="collapse" th:href="'#' + ${theme.themeId} + 'theme'" aria-expanded="false" aria-controls="Page2"><i class="collapsed"><i class="fas fa-folder fa-lg" style="color:#ffc107;"></i></i>
+							<!-- THEME NAME PART  -->
+							<i class="expanded"><i class="far fa-folder-open fa-lg" style="color:#ffc107;"></i></i> <font style="font-size:12px; color:white" th:text="${theme.themeName}"></font> </a>
+						<div class="pull-right action-buttons">
+								<!-- THEME STATUS PART -->
+			                 <font th:if="${theme.status == 'Failed'}" style ="color:#ef5350; font-size:10px" th:text="${theme.status}"></font>
+			                 <font th:if="${theme.status == 'Ignored'}" style ="color:#e0e0e0; font-size:10px" th:text="${theme.status}"></font>
+			                 <font th:if="${theme.status == 'Pending'}" style ="color:#ff8f00; font-size:10px" th:text="${theme.status}"></font>
+			                 <font th:if="${theme.status == 'Passed'}" style ="color:#43a047; font-size:10px" th:text="${theme.status}"></font>
+			                 <font th:if="${theme.status == 'Executing'}" style ="color:#039be5; font-size:10px" th:text="${theme.status}"></font>
+			            </div>
+					  		<ul><div th:id="${theme.themeId} + 'theme'" class="collapse">
+					    		<li th:each="story : ${storyList}" class="list-group-item" style="background-color:#394349" th:if="${story.themeId.themeId == theme.themeId}">
+					    		<a style="color:#000; text-decoration:none;" data-toggle="collapse" th:href="'#' + ${story.storyId} + 'story'" aria-expanded="false" aria-controls="folder1"><i class="collapsed"><i class="fas fa-folder fa-sm" style="color:#ffc107;"></i></i>
+					    			<!-- STORY NAME PART  -->
+									<i class="expanded"><i class="far fa-folder-open fa-sm" style="color:#ffc107;"></i></i><font style="color:white;font-size:12px" th:text="${story.storyName}"></font> </a>
+											<div class="pull-right action-buttons">
+												<!-- STORY STATUS PART -->
+					                       		<font th:if="${story.status == 'Failed'}" style ="color:#ef5350; font-size:10px" th:text="${story.status}"></font>
+								                <font th:if="${story.status == 'Ignored'}" style ="color:#e0e0e0; font-size:10px" th:text="${story.status}"></font>
+								                <font th:if="${story.status == 'Pending'}" style ="color:#ff8f00; font-size:10px" th:text="${story.status}"></font>
+								                <font th:if="${story.status == 'Passed'}" style ="color:#43a047; font-size:10px" th:text="${story.status}"></font>
+								                <font th:if="${story.status == 'Executing'}" style ="color:#039be5; font-size:10px" th:text="${story.status}"></font>
+					                    	</div>
+					      			 <ul><div th:id="${story.storyId} + 'story'" class="collapse">
+					      			 	<!-- DEPENDENT TESTCASE NUMBER PART -->
+						         		<li th:each="testcase : ${dependentTestcaseList}" th:if="${testcase.storyId.storyId == story.storyId}"><i class="far fa-file fa-sm"></i><a href="#!"><font style="color:white;font-size:11px;" th:text="'&nbsp;' + ${testcase.testcaseNumber}"></font> </a>
+									         <div class="pull-right action-buttons">
+									         		<!-- DEPENDENT TESTCASE STATUS PART -->
+						                      	<font th:if="${testcase.status == 'Failed'}" style ="color:#ef5350; font-size:10px" th:text="${testcase.status}"></font>
+								                <font th:if="${testcase.status == 'Ignored'}" style ="color:#e0e0e0; font-size:10px" th:text="${testcase.status}"></font>
+								                <font th:if="${testcase.status == 'Pending'}" style ="color:#ff8f00; font-size:10px" th:text="${testcase.status}"></font>
+								                <font th:if="${testcase.status == 'Passed'}" style ="color:#43a047; font-size:10px" th:text="${testcase.status}"></font>
+								                <font th:if="${testcase.status == 'Executing'}" style ="color:#039be5; font-size:10px" th:text="${testcase.status}"></font>
+						                    </div> 
+						         		</li>
+											   </div>
+										  </ul>
+									</li>
+										</div>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						<hr style="margin-top: 5px; margin-bottom: 5px;"/>
+					</li>
+				</ul>	
+			</div>
+		</div>	            
+    </div>               
+</div>
+         
+        <div class="col-lg-8">
+        		<div class="panel bg-dark">
+					<div class="panel-heading" style="background-color:#1f2122">
+						<font color="white"> <h3 class="panel-title"> Overview </h3></font>	
+					</div>
+					<div class="panel-body">
+					<b style="font-size:12px">Created By: &nbsp;</b> <font style ="font-size:11px">{{testcasedata[1].sender}} </font>  &nbsp; 
+					<b style="font-size:12px"> Description: &nbsp; </b> <font style ="font-size:11px"> {{testcasedata[0].description}} </font>
+					<p></p>
+					<b style="font-size:12px">Test Case: &nbsp;</b> <font style ="font-size:11px">{{testcasedata[0].testcaseNumber}}</font> &nbsp; | &nbsp;  <b style="font-size:12px">Client: &nbsp;</b><font style ="font-size:11px"> {{testcasedata[0].clientName}}</font> &nbsp;	<!--   | &nbsp; <b>Transaction Type: &nbsp;</b>	{{testcasedata[1].transactionType}} -->
+					<div class="pull-right"> 
+					<i class="fas fa-check-circle" style="color:#43a047"></i><font style ="font-size:11px">&nbsp;Success </font> &nbsp;
+					<i class="fas fa-times-circle" style="color:#ef5350"></i><font style ="font-size:11px">&nbsp;Failed </font> &nbsp;
+					<i class="fas fa-exclamation-circle" style="color:#ff8f00"></i><font style ="font-size:11px">&nbsp;Pending </font> &nbsp;
+					</div>
+					</div>
+					<div class="table-wrapper">
+						<table class="table table-stripped" id="dev-table" style="height:400px; font-size:12px">
+							<thead>
+								<tr>
+									<th>Status</th>
+									<th>Timestamp</th>
+									<th style="text-align:left">Details</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="tcData in testcasedata[2] track by $index" ng-switch="tcData.remarks">
+									<td ng-switch-when="Failed" style="width:200px;">
+										<i class="fas fa-times-circle" style="color:#ef5350; display:inline;"></i>
+										<div ng-if="tcData.screenshotPath" style="display:inline;">
+											<i class="fas fa-eye" style="color:#bdced7; display:inline;" ng-click="showPicture(tcData.screenshotPath, ($index + 1))" rel="tooltip" title="View Image"></i>
+											<div id="{{'myModal' + ($index + 1)}}" class="modal">
+											    <span ng-click="closePicture(($index+1))" class="close">&times;</span>
+											    <img class="modal-content" id="{{'img' + ($index + 1)}}" src="{{'/screenshots/' + imgSrc[0]}}"/>
+											</div>
+										</div>
+									</td>
+									<td ng-switch-when="Passed">
+										<i class="fas fa-check-circle" style="color:#43a047; display:inline;"></i>
+										<div ng-if="tcData.screenshotPath" style="display:inline;">
+											<i class="fas fa-eye" style="color:#bdced7; display:inline;" ng-click="showPicture(tcData.screenshotPath, ($index + 1))" rel="tooltip" title="View Image"></i>
+											<div id="{{'myModal' + ($index + 1)}}" class="modal">
+											    <span ng-click="closePicture(($index+1))" class="close">&times;</span>
+											    <img class="modal-content" id="{{'img' + ($index + 1)}}" src="{{'/screenshots/' + imgSrc[0]}}"/>
+											</div>
+										</div>
+									</td>
+									<td ng-switch-when="Pending">
+										<i class="fas fa-exclamation-circle" style="color:#ff8f00; display:inline;"></i>
+										<div ng-if="tcData.screenshotPath" style="display:inline;">
+											<i class="fas fa-eye" style="color:#bdced7" ng-click="showPicture(tcData.screenshotPath, ($index + 1))" rel="tooltip" title="View Image"></i>
+											<div id="{{'myModal' + ($index + 1)}}" class="modal">
+											    <span ng-click="closePicture(($index+1))" class="close">&times;</span>
+											    <img class="modal-content" id="{{'img' + ($index + 1)}}" src="{{'/screenshots/' + imgSrc[0]}}"/>
+											</div>
+										</div>
+									</td>
+									<td ng-if="tcData.remarks == 'Failed'" style="width:540px;">{{tcData.timestamp}}</td>
+									<td ng-if="tcData.remarks == 'Passed'">{{tcData.timestamp}}</td>
+									<td ng-if="tcData.remarks == 'Pending'">{{tcData.timestamp}}</td>
+									<td style="text-align:left;">
+										{{tcData.label}}<div ng-if="tcData.logfield != '-' ">{{tcData.logfield}}</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				 </div>
+         	 </div>
+		  </div>       
+      </div>
+   </div>
+</div>
+
+</div>
+</main>
+</div>
+
+</body>
+</html>

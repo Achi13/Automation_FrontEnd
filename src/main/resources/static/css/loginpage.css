@@ -1,0 +1,106 @@
+body{
+	background: url("/pictures/LoginBg.jpg") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+}
+
+.box {	
+  display: flex;
+  align-items: center;
+  flex-direction: column; 
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
+}
+
+.box img{
+	height:95px;
+	width:95px;
+}
+
+
+ .button {
+   outline: 0;
+   font-family: "Arial Black", Gadget, sans-serif";
+   font-size: 12px;
+   letter-spacing: 0.1em;
+   background-color: #4682B4;
+   color: #fff;
+   border: none;
+   border-radius: 3px;
+   width: 200px;
+   padding: 0.5em 0; 
+   margin: 2em auto;
+   display: block;  
+  }
+  
+   .button:hover{
+  background-color: #2971c0;
+  }
+  
+  .button:active{
+   background-color: #4682B4;
+  }
+
+	.input-group-prepend span{
+	width: 40px;
+	background-color:#4682B4;
+	color: #ffffff;
+	border:0 !important;
+	}
+
+	input:focus{
+	outline: 0 0 0 0  !important;
+	box-shadow: 0 0 0 0 !important;
+	
+	}
+	
+	/*whole card*/
+	#formContent {
+	height: 450px;
+	margin-top: auto;
+	margin-bottom: auto;
+	width: 417px;
+	border-radius:15px;
+	background-color: rgba(0,0,0,0.5) !important;
+	}
+
+	.fadeInDown {
+	  -webkit-animation-name: fadeInDown;
+	  animation-name: fadeInDown;
+	  -webkit-animation-duration: 1s;
+	  animation-duration: 1s;
+	  -webkit-animation-fill-mode: both;
+	  animation-fill-mode: both;
+	}
+	
+	@-webkit-keyframes fadeInDown {
+	  0% {
+	    opacity: 0;
+	    -webkit-transform: translate3d(0, -100%, 0);
+	    transform: translate3d(0, -100%, 0);
+	  }
+	  100% {
+	    opacity: 1;
+	    -webkit-transform: none;
+	    transform: none;
+	  }
+	}
+	
+	@keyframes fadeInDown {
+	  0% {
+	    opacity: 0;
+	    -webkit-transform: translate3d(0, -100%, 0);
+	    transform: translate3d(0, -100%, 0);
+	  }
+	  100% {
+	    opacity: 1;
+	    -webkit-transform: none;
+	    transform: none;
+	  }
+	  
+	}
+

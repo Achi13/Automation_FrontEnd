@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Universe</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"></script>
+<link rel="stylesheet" href="/css/universepage.css"/>
+<link rel="stylesheet" href="/fontawesome/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap2.css"/>
+
+</head>
+<body>
+
+<br/> <br/> <br/> <br/> <br/> <br/>
+
+<div class="card-display">
+	<div class="row">
+		<div class="slide">
+      		<figure>
+        		<div class="card-ctr">	
+          			<div class="card automation" data-index="{#i}">
+          				<br/> <br/>
+          							<!-- <img src="/pictures/screen.png" style="width:55%; height:40%; display: block; margin-left: auto; margin-right: auto;"/> -->
+          					<div class="text-center"> 
+          						 <font color="#42a5f5" style=" font-family: Impact, Charcoal, sans-serif; font-size: 40px;">Select</font>
+								 <font color="white" style=" font-family: Impact, Charcoal, sans-serif; font-size: 40px; ">Screen</font>
+          					</div>		
+								 <br/>  <br/> 
+          							<!-- Search form  -->
+          							<div style="padding-left:20px; padding-right:20px">
+          								<font style="color:white"><b> Search:</b></font>
+          								<p></p>
+    									<input type="search" class="form-control" id="searchBox" />   
+          							</div>	
+          							
+          							<form action="/universe/setuniverse" method="POST">
+	          							<br/>
+	          							<!-- Dropdown -->
+	          							<div style="padding-left:20px; padding-right:20px;">
+	          							<font style="color:white"><b> Available Screen:  </b></font>
+	          								<p></p>
+	          								<select id="countries" class="custom-select form-control" name="universeid">
+	         									<option th:each="universe : ${universeList}" th:value="${universe.universeId}" th:text="${universe.universeName}"></option>
+	         								</select>
+         								</div>
+		          					
+		          						<br/> <br/>  <br/> 
+		          						
+			          					<div class="text-center">
+			          						<p><input type="submit" value="Proceed" class="btn btn-outlined btn-primary"/></p>
+			          					</div>
+          							</form>
+          							
+          								<br/> <br/>
+          
+ 								</div>
+        					</div>
+      					</figure>
+   					 </div>
+				
+			</div>
+		</div>
+
+
+
+<script src="/js/universe.js"></script>
+
+</body>
+</html>

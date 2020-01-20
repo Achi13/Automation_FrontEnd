@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>Existing Templates</title>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script language="Javascript" src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+<script src="/js/extemplate_script.js" ></script>
+<link rel="stylesheet" href="/css/extemplate.css"/>
+<link rel="stylesheet" href="/fontawesome/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap2.css"/>
+
+<style>
+	
+	.datepicker {
+	    position: relative;
+	    color: white;
+	    height: 37px;
+	}
+	
+	.datepicker:before {
+	    position: absolute;
+	    top: 3px; left: 3px;
+	    content: attr(data-date);
+	    display: inline-block;
+	    color: black;
+	}
+	
+	.datepicker::-webkit-datetime-edit, .datepicker::-webkit-inner-spin-button, .datepicker::-webkit-clear-button {
+	    display:none;
+	}
+	
+	.datepicker::-webkit-calendar-picker-indicator {
+	    position: absolute;
+	    top: 3px;
+	    right: 0;
+	    color: black;
+	    opacity: 1;
+	}
+		#datatable_wrapper.dataTables_wrapper{
+		padding:10px;
+	}
+		
+</style>
+
+
+</head>
+
+<body ng-app="mainBody" ng-controller="mainController">
+<!--  
+<nav class="navbar navbar-expand-md navbar-light bg-dark">
+ <a class="navbar-brand pb-2" href="#"><img src="/pictures/OneAstonLogo.png" style=" width: 55px; height:55px;  vertical-align: middle;"/>
+  <img src="/pictures/oalogoword.png" style=" width: 165px; height:50px;  vertical-align: middle;"/> </a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+		  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+		    <ul class="navbar-nav ml-auto">
+	       <li class="nav-item"> <img src="/pictures/User_icon.png" style="width: 45px; height:45px; padding-top:13px; padding-right:10px;"/></li> 
+		   <li class="nav-item"> <p th:text="'Hi, ' + ${user} + '!'"  style="color:white; font-family:Tahoma, Geneva, sans-serif; font-size:20px; padding-top:13px; padding-right:5px; "></p> </li>
+		      	<li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style= "color:white; padding-top:19px;"> </a>
+           <ul class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdownMenuLink">
+           <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" style="color:white" href="/home"><font style="color:white">Home</font></a>
+           <ul class="dropdown-menu bg-dark" style="background-color:#f5f5f5;">
+           <li class="dropdown-submenu" ><a class="dropdown-item " href="/index"><font style="color:white">OneLibrary</font></a>
+           </li>
+               <li><a class="dropdown-item" href="/dependenttestcase/setreportlogpage"><font style="color:white">OneLog</font></a></li> 
+               <li><a class="dropdown-item" href="/campaign/dashboardpage"><font style="color:white">OneReport</font></a></li>
+               <li><a class="dropdown-item" href="/campaign/campaignpage"><font style="color:white">OneProject</font></a></li>
+               <li><a class="dropdown-item" href="/user/officerpage"><font style="color:white">OneAdmin</font></a></li>
+               <li><a class="dropdown-item" href="/client/createclientpage"><font style="color:white">OneClient</font></a></li>
+                
+              <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Submenu 1</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Subsubmenu1</a></li>
+                  <li><a class="dropdown-item" href="#">Subsubmenu1</a></li>
+                </ul>
+              </li>
+              
+              <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Submenu 2</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Subsubmenu2</a></li>
+                  <li><a class="dropdown-item" href="#">Subsubmenu2</a></li>
+                </ul>
+              </li>
+             
+              
+            </ul>
+           </li>
+          <li><a class="dropdown-item" href="/user/accountsetingspage"><font style="color:white">Account Settings</font></a></li>
+          <li><a class="dropdown-item" href="/logout"><font style="color:white">Logout</font></a></li>     
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+-->		
+
+<div class="page-wrapper chiller-theme toggled">
+  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <i class="fas fa-bars"></i>
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+      <div class="sidebar-brand">
+        <a href="#">oneaston automation</a>
+        <div id="close-sidebar">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+            alt="User picture"/>
+        </div>
+        <div class="user-info">
+          <span class="user-name">
+         	<strong th:text="${user}" style="text-transform:UPPERCASE"></strong> 
+          </span>
+          <span class="user-role">Administrator</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div>
+      <div class="sidebar-menu">
+        <ul>
+          <li class="header-menu">
+            <span>General</span>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/home">
+              <i class="fa fa-tachometer-alt"></i>
+              <span>Views</span>
+            </a>   
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/index">
+              <i class="fa fa-folder"></i>
+              <span>Libraries</span>
+            </a>
+          </li>
+          <li>
+            <a href="/dependenttestcase/setreportlogpage">
+              <i class="fa fa-book"></i>
+              <span>Logs</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/campaign/campaignpage">
+              <i class="far fa-gem"></i>
+              <span>Projects</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/campaign/dashboardpage">
+              <i class="fa fa-chart-line"></i>
+              <span>Reports</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/client/createclientpage">
+              <i class="fa fa-globe"></i>
+              <span>Clients</span>
+            </a>
+          </li>
+          <li class="header-menu">
+            <span>Extra</span>
+          </li>
+         <li>
+            <a href="/user/officerpage">
+              <i class="fa fa-user"></i>
+              <span>Users</span>
+            </a>
+          </li>
+          <li>
+            <a href="/calendar">
+              <i class="fa fa-calendar"></i>
+              <span>Calendar</span>
+            </a>
+          </li>
+         
+        </ul>
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <a href="#">
+        <i class="fa fa-bell" rel="tooltip" title="Notification" style="cursor:pointer;"></i>
+      </a>
+      <a href="#">
+        <i class="fa fa-envelope" rel="tooltip" title="Message" style="cursor:pointer;"></i> 
+      </a>
+      <a href="/user/accountsetingspage">
+        <i class="fa fa-cog" rel="tooltip" title="Account Settings" style="cursor:pointer;"></i>
+      </a>
+      <a href="/logout">
+        <i class="fa fa-power-off" rel="tooltip" title="Logout" style="cursor:pointer;"></i>
+      </a>
+    </div>
+  </nav>
+
+  	<br/> <br/>
+	
+<main class="page-content">
+  <div class="container-fluid">	
+	<!-- CREATE TESTCASE PART -->
+	<div class="row" th:if="${templateDataList == null}">
+		
+			<div class="col-md-12">
+				<input type="text" hidden="hidden" th:value="${userId}" readonly="readonly" id="userId"/>
+				<h3 style="color:green;" id="infoText" th:text="${Info}"></h3>
+				<div class="panel bg-dark">
+					<div class="panel-heading text-center" style="background-color:#1f2122;">
+					<font color="#1c2331" style=" font-family: Arial Black, Gadget, sans-serif; font-size: 10px;">Automation Site(Existing Template)</font>
+					</div>
+					<div class="panel-body">
+						<form action="/dependenttestcase/writecsv" method="post">
+						<input type="text" hidden="hidden" name="storyId" th:value="${storyId}" readonly="readonly"/>
+						<p></p>	
+					<div class="form-inline">
+						<div class="col-md-2"> 
+							<b style="color:white"><font style="font-size:15px"> Client: &nbsp;</font></b> &nbsp;
+								<input list="clientDataList" type="text" required="required" name="clientName" class="form-control" id="clientFilter" ng-change="filterWebPath()" ng-model="clientValue"/>
+								<datalist id="clientDataList">
+									<option th:each="client : ${clientData}" th:value="${client.clientId}" th:text="${client.clientName}"></option>
+								</datalist>
+						</div>	 	
+					 <div class="col-md-2"> 	
+					 	<b style="color:white"><font style="font-size:15px"> Web Path: &nbsp; </font> </b>  
+							<input required="required" list="web" name="url" class="form-control" id="webPathFilter" ng-change="filterAssignedAccount()" ng-model="webAddressValue" autocomplete="off"/>
+								<datalist id="web" title="sample">
+									<option ng-repeat="webAddress in webAddressData.webAddressData" value="{{webAddress.url}}" title="{{webAddress.name}} + \n\n + {{webAddress.description}}">{{webAddress.name}} - {{webAddress.description}}</option>
+								</datalist>
+					</div>
+					 <div class="col-md-2"> 
+						<b style="color:white"><font style="font-size:15px"> Assigned Account: &nbsp;</font> </b>
+							<input required="required" list="userSE" name="assignedAccount" class="form-control" id="assignedAccountFilter"/>
+								<datalist id="userSE"> 
+									<option ng-repeat="loginAccount in clientLoginAccountData.loginAccountData" value="{{loginAccount.loginAccountId}}">{{loginAccount.username}}</option>									
+								</datalist>
+					</div>		
+					 <div class="col-md-2">		
+					 	<b style="color:white"><font style="font-size:15px">Template: &nbsp; </font></b>		
+		  					<input list="templatesList" type="text" required="required" name="template" class="form-control" id="templateFilter" ng-change="getTemplateData()" ng-model="templateDataValue0"/>
+		  					<datalist id="templatesList">
+								<option ng-repeat="templates in templatesData.templatesList" value="{{templates.templateId}}">{{templates.templateName}}</option>
+							</datalist>
+					</div>	
+					<div class="col-md-2">
+						<div  th:if="${serverImport == true}">
+							<b style="color:white;"><font style="font-size:15px;">Tap Import status: </font></b>
+				    		<input class="form-control" type="number" name="tapImportStatus" id="tapImportStatus" required="required"/>
+						</div>
+				</div>	
+					<div class="col-md-2">
+							<b style="color:white;"><font style="font-size:15px;">Description: </font></b>
+				    		<input class="form-control" type="text" required="required" name="description" style="width:100% "/>
+				</div>	
+			</div>
+						<hr/>				
+							<table class="table table-striped table-dark">
+								<thead class="thead-dark">
+									<th><font style="font-size:13px">Label</font></th>
+									<th><font style="font-size:13px">Web Element Nature</font></th>
+									<th><font style="font-size:13px">Nature of Action</font></th>
+									<th><font style="font-size:13px">Trigger Enter</font></th>
+									<th><font style="font-size:13px">Screen Capture</font></th>
+									<th><font style="font-size:13px">Input Output Value</font></th>
+									<th><font style="font-size:13px">Web Element Name</font></th>
+								</thead>
+								<tbody>
+									<!-- /////////////////////////DATA 1///////////////////////////////    -->
+									<tr ng-repeat="element in templateData.templateData track by $index">
+										<!-- Notes -->
+										<td>
+											<input type="text" name="templateDataId" value="{{element.templateDataId}}" readonly="readonly" hidden="hidden"/>
+											<input readonly="readonly" type="text" name="label" value="{{element.label}}" class="form-control"/>
+										</td>
+										<!-- Web Element Nature -->
+										<td ng-switch="element.webElementNature">
+											
+											<select ng-switch-when="name" name="webElementNature" class="custom-select">
+												<option value="name" selected="selected">name</option>
+											</select>
+											<select ng-switch-when="class" name="webElementNature" class="custom-select">
+												<option value="class" selected="selected">class</option>
+											</select>
+											<select ng-switch-when="id" name="webElementNature" class="custom-select">
+												<option value="id" selected="selected">id</option>
+											</select>
+											<select ng-switch-when="xpath" name="webElementNature" class="custom-select">
+												<option value="xpath" selected="selected">xpath</option>
+											</select>
+										</td>
+										<!-- Nature of Action -->
+										<td ng-switch="element.natureOfAction">
+											<select ng-switch-when="click" name="natureOfAction" class="custom-select" ng-attr-id="{{'natureOfAction' + ($index+1)}}" ng-change="changeInput($index + 1)" ng-model="element.natureOfAction">
+												<option value="click" selected="selected">click</option>
+											</select>
+											<select ng-switch-when="input" name="natureOfAction" class="custom-select" ng-attr-id="{{'natureOfAction' + ($index+1)}}" ng-change="changeInput($index + 1)" ng-model="element.natureOfAction">
+												<option value="input" selected="selected">input</option>
+											</select>
+											<select ng-switch-when="hover" name="natureOfAction" class="custom-select" ng-attr-id="{{'natureOfAction' + ($index+1)}}" ng-change="changeInput($index + 1)" ng-model="element.natureOfAction">
+												<option value="hover" selected="selected">hover</option>
+											</select>
+											<select ng-switch-when="compare" name="natureOfAction" class="custom-select" ng-attr-id="{{'natureOfAction' + ($index+1)}}" ng-change="changeInput($index + 1)" ng-model="element.natureOfAction">
+												<option value="compare" selected="selected">compare</option>
+											</select>
+											<select ng-switch-when="select" name="natureOfAction" class="custom-select" ng-attr-id="{{'natureOfAction' + ($index+1)}}" ng-change="changeInput($index + 1)" ng-model="element.natureOfAction">
+												<option value="select" selected="selected">select</option>
+											</select>
+											<select ng-switch-when="datepicker" name="natureOfAction" class="custom-select" ng-attr-id="{{'natureOfAction' + ($index+1)}}" ng-change="changeInput($index + 1)" ng-model="element.natureOfAction">
+												<option value="datepicker" selected="selected">datepicker</option>
+											</select>
+										</td>
+										
+										<!-- Trigger Enter -->
+										<td>
+											<div ng-switch="element.triggerEnter">
+												<input readonly="readonly" ng-switch-when="true" type="checkbox" value="true" ng-attr-id="{{'triggerEnterValue' + ($index+1)}}" checked="checked" ng-change="changeTriggerEnter($index + 1)" ng-model="element.triggerEnter" style="width:25px;height:25px;"/>	
+												<input readonly="readonly" ng-switch-when="false" type="checkbox" value="false" ng-attr-id="{{'triggerEnterValue' + ($index+1)}}" ng-change="changeTriggerEnter($index + 1)" ng-model="element.triggerEnter" style="width:25px;height:25px;"/>
+											</div>
+											<div ng-switch="element.triggerEnter">
+												<input readonly="readonly" ng-switch-when="true" type="text" value="true" name="triggerEnter" ng-attr-id="{{'triggerEnterValue' + ($index+1)}}" hidden="hidden" style="width:25px;height:25px;"/>
+												<input readonly="readonly" ng-switch-when="false" type="text" value="false" name="triggerEnter" ng-attr-id="{{'triggerEnterValue' + ($index+1)}}" hidden="hidden" style="width:25px;height:25px;"/>
+											</div>
+										</td>
+										<!-- Screen Capture -->
+										<td>
+											<div ng-switch="element.screenCapture">
+												<input readonly="readonly" ng-switch-when="true" type="checkbox" value="true" ng-attr-id="{{'screenCapture' + ($index+1)}}" checked="checked" ng-change="changeScreenCapture($index + 1)" ng-model="element.screenCapture" style="width:25px;height:25px;"/>
+												<input readonly="readonly" ng-switch-when="false" type="checkbox" value="false" ng-attr-id="{{'screenCapture' + ($index+1)}}" ng-change="changeScreenCapture($index + 1)" ng-model="element.screenCapture" style="width:25px;height:25px;"/>
+											</div>
+											<div ng-switch="element.screenCapture">
+												<input readonly="readonly" ng-switch-when="true" type="text" value="true" name="screenCapture" ng-attr-id="{{'screenCaptureValue' + ($index+1)}}" hidden="hidden" style="width:25px;height:25px;"/>
+												<input readonly="readonly" ng-switch-when="false" type="text" value="false" name="screenCapture" ng-attr-id="{{'screenCaptureValue' + ($index+1)}}" hidden="hidden" style="width:25px;height:25px;"/>
+											</div>
+										</td>
+										
+										<!-- Input Output Value -->
+										<td ng-switch="element.natureOfAction">
+											<input required="required" ng-switch-when="input" type="text" name="inputOutputValue" class="form-control" ng-attr-id="{{'inputOutput' + ($index+1)}}" value="{{element.inputOutputValue}}"/>
+											<input required="required" ng-switch-when="compare" type="text" name="inputOutputValue" class="form-control" ng-attr-id="{{'inputOutput' + ($index+1)}}" value="{{element.inputOutputValue}}"/>
+											<input required="required" ng-switch-when="select" type="text" name="inputOutputValue" class="form-control" ng-attr-id="{{'inputOutput' + ($index+1)}}" value="{{element.inputOutputValue}}"/>
+											<input required="required" ng-switch-when="datepicker" type="date" data-date="" onchange="changeDate(this)" data-date-format="MMM DD, YYYY" name="inputOutputValue" class="datepicker form-control" ng-attr-id="'inputOutput' + ($index+1)"/>
+											<input required="required" ng-switch-when="click" hidden="hidden" readonly="readonly" type="text" name="inputOutputValue" class="form-control" ng-attr-id="{{'inputOutput' + ($index+1)}}" value="{{element.inputOutputValue}}"/>
+											<input required="required" ng-switch-when="hover" hidden="hidden" readonly="readonly" type="text" name="inputOutputValue" class="form-control" ng-attr-id="{{'inputOutput' + ($index+1)}}" value="{{element.inputOutputValue}}"/>
+										</td>
+										
+										<!-- Web Element -->
+										<td>
+											<input readonly="readonly" type="text" name="webElementName" value="{{element.webElementName}}" class="form-control" ng-attr-id="{{'webElementName' + ($index+1)}}" hidden="hidden"/>
+										 	<div class="switchToggle1"><input type="checkbox" ng-click="toggleWebElementName($index + 1)" ng-attr-id="{{'showWebElementName' + ($index+1)}}"/><label ng-attr-for="{{'showWebElementName' + ($index + 1)}}"></label></div>
+										</td> 
+										
+									</tr>
+								</tbody>
+							</table>
+							
+						<hr/>
+						
+							
+							<div style="text-align:right;padding-right:10px;">
+								<input type="submit" name="submit" value="Verify" class="btn btn1"/>
+								<a th:href="'/dependenttestcase/dependenttestcasepage/' + ${storyId}" class="btn btn1">Cancel</a>
+							</div>
+						 
+						  <!--  
+							<table> 
+								<tr> 
+									<td style="width:10px"></td>
+									<td><font style="color:white; font-size:13px"><b> Description:</b></font></td>
+									<td style="width:5px"></td>	
+									<td><textarea class="autoExpand" rows="3" cols="50" name="description"> </textarea></td>
+									<td style="width: 14%"></td>
+								
+									<td><input type="submit" name="submit" value="Verify" class="btn btn1" style="width:170%"/></td>
+									<td style="width: 5%"></td>
+									<td><input type="submit" name="submit" value="Cancel" class="btn btn1" style="width:170%"/></td>
+									<td style="width: 6%"></td>
+									<td><a><button class="btn btn1" data-toggle="modal" data-target="#insertScriptModal" style="cursor:pointer; width: 170%"> Embed Script</button></a></td>
+								</tr>	
+							</table>
+ 							-->
+							<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
+						</form>
+						<br/>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+    
+		
+		
+		<!-- MODIFY TESTCASE PART -->
+	<div class="row" th:if="${templateDataList} != null">
+		<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<input type="text" hidden="hidden" th:value="${userId}" readonly="readonly" id="userId"/>
+				<h3 style="color:green;" id="infoText" th:text="${Info}"></h3>
+				<div class="panel bg-dark">
+					<div class="panel-heading text-center" style="background-color:#1f2122;">
+						<font color="#1c2331" style=" font-family: Arial Black, Gadget, sans-serif; font-size: 10px;">Automation Site(Existing Template)</font>
+					</div>
+					<div class="panel-body">
+						<form action="/dependenttestcase/modifytestcase" method="post">
+							<input type="text" hidden="hidden" name="storyId" th:value="${storyId}" readonly="readonly"/>
+						<p></p>
+						<table> 
+								<tr>
+									<td> <b style="color:white; padding-left:25px"> Testcase Number: &nbsp; </b>  </td> 
+									<td>
+										<input type="text" name="testcaseNumber" class="form-control" readonly="readonly" th:value="${testcaseNumber}"/>
+										<input type="text" name="storyId" class="form-control" readonly="readonly" hidden="hidden" th:value="${storyId}"/>
+									</td>	
+									<td style="width:50px;"></td>
+									<td> <b style="color:white; padding-left:25px"> Description: &nbsp; </b> </td>
+									<td> <input th:value="${description}" type="text" name="description" class="form-control" style="width:100%" /> </td>
+									
+									<td th:if="${isServerImport == true}"><b style="color:white; padding-left:25px;">Tap Import status: &nbsp;</b></td>
+									<td th:if="${isServerImport == true}"><input th:value="${tapImportStatus}" class="form-control" type="number" name="tapImportStatus" id="tapImportStatus" required="required"/></td>
+												
+									    		
+								</tr>
+						</table>
+						<hr/>				
+							<table class="table table-striped table-dark">
+								<thead class="thead-dark">
+									<th style="width: 200px;">Label</th>
+									<th>Web Element Nature</th>
+									<th>Nature of Action</th>
+									<th>Trigger Enter</th>
+									<th>Screen Capture</th>
+									<th>Input Output Value</th>
+									<th>Web Element Name</th>
+								</thead>
+								<tbody>
+									<!-- /////////////////////////DATA 1///////////////////////////////    -->
+									<tr th:each="element, iter : ${templateDataList}">
+										<!-- Notes -->
+										<td>
+											<input type="text" name="templateDataId" th:value="${element.templateDataId}" readonly="readonly" hidden="hidden"/>
+											<input type="text" name="label" th:value="${element.label}" readonly="readonly" class="form-control"/>
+										</td>
+										<!-- Web Element Nature -->
+										<td th:switch="${element.webElementNature}">
+											
+											<select th:case="'name'" name="webElementNature" class="custom-select">
+												<option value="name" selected="selected">name</option>
+											</select>
+											<select th:case="'class'" name="webElementNature" class="custom-select">
+												<option value="class" selected="selected">class</option>
+											</select>
+											<select th:case="'id'" name="webElementNature" class="custom-select">
+												<option value="id" selected="selected">id</option>
+											</select>
+											<select th:case="'xpath'" name="webElementNature" class="custom-select">
+												<option value="xpath" selected="selected">xpath</option>
+											</select>
+										</td>
+										<!-- Nature of Action -->
+										<td th:switch="${element.natureOfAction}">
+											<select th:case="'click'" name="natureOfAction" class="custom-select">
+												<option value="click" selected="selected">click</option>
+											</select>
+											<select th:case="'input'" name="natureOfAction" class="custom-select">
+												<option value="input" selected="selected">input</option>
+											</select>
+											<select th:case="'hover'" name="natureOfAction" class="custom-select">
+												<option value="hover" selected="selected">hover</option>
+											</select>
+											<select th:case="'compare'" name="natureOfAction" class="custom-select">
+												<option value="compare" selected="selected">compare</option>
+											</select>
+											<select th:case="'select'" name="natureOfAction" class="custom-select">
+												<option value="select" selected="selected">select</option>
+											</select>
+											<select th:case="'datepicker'" name="natureOfAction" class="custom-select">
+												<option value="datepicker" selected="selected">datepicker</option>
+											</select>
+										</td>
+										
+										<!-- Trigger Enter -->
+										<td>
+											<div th:switch="${element.triggerEnter}">
+												<input th:case="'true'" readonly="readonly" type="checkbox" value="true" checked="checked" style="width:25px;height:25px;"/>	
+												<input th:case="'false'" readonly="readonly" type="checkbox" value="false" style="width:25px;height:25px;"/>
+											</div>
+											<div th:switch="${element.triggerEnter}">
+												<input th:case="'true'" readonly="readonly" type="text" value="true" name="triggerEnter" hidden="hidden" style="width:25px;height:25px;"/>
+												<input th:case="'false'" readonly="readonly" type="text" value="false" name="triggerEnter" hidden="hidden" style="width:25px;height:25px;"/>
+											</div>
+										</td>
+										<!-- Screen Capture -->
+										<td>
+											<div th:switch="${element.screenCapture}">
+												<input th:case="'true'" readonly="readonly" type="checkbox" value="true" checked="checked" style="width:25px;height:25px;"/>
+												<input th:case="'false'" readonly="readonly" type="checkbox" value="false" style="width:25px;height:25px;"/>
+											</div>
+											<div th:switch="${element.screenCapture}">
+												<input th:case="'true'" readonly="readonly" type="text" value="true" name="screenCapture" hidden="hidden" style="width:25px;height:25px;"/>
+												<input th:case="'false'" readonly="readonly" type="text" value="false" name="screenCapture" hidden="hidden" style="width:25px;height:25px;"/>
+											</div>
+										</td>
+										
+										<!-- Input Output Value -->
+										<td th:switch="${element.natureOfAction}">
+											<input th:case="'input'" type="text" name="inputOutputValue" class="form-control" th:value="${element.inputOutputValue}"/>
+											<input th:case="'compare'" type="text" name="inputOutputValue" class="form-control" th:value="${element.inputOutputValue}"/>
+											<input th:case="'select'" type="text" name="inputOutputValue" class="form-control" th:value="${element.inputOutputValue}"/>
+											<input th:case="'datepicker'" type="date" data-date="" onchange="changeDate(this)" data-date-format="MMM DD, YYYY" th:value="${element.inputOutputValue}" name="inputOutputValue" class="form-control datepicker" th:id="'inputOutput' + ${iter.index + 1}"/>
+											
+										</td>
+										
+										<!-- Web Element -->
+										<td>
+											<input readonly="readonly" type="text" name="webElementName" th:value="${element.webElementName}" class="form-control" th:id="'webElementName' + ${(iter.index+1)}" hidden="hidden"/>
+										 	<div class="switchToggle1"><input type="checkbox" th:onchange="'javascript:toggleWebElementName(' + ${iter.index +1} + ')'" th:id="'showWebElementName' + ${iter.index+1}"/><label th:for="'showWebElementName' + ${iter.index + 1}"></label></div>
+										</td> 
+										
+									</tr>
+								</tbody>
+							</table>
+							
+						<hr/>
+						<!--
+							<textarea name="description"></textarea>
+							<div style="text-align:right;padding-right:10px;">
+								<input type="submit" name="submit" value="Verify" class="btn btn1"/>
+								<input type="submit" name="submit" value="Cancel" class="btn btn1"/>
+							</div>
+						  -->
+						  <div style="text-align:right; padding-right: 10px">
+						  	<input type="submit" name="submit" value="Verify" class="btn btn1" />
+						  	<a th:href="'/dependenttestcase/dependenttestcasepage/' + ${storyId}" class="btn btn1">Cancel</a>
+						  	<a class="btn btn1" data-toggle="modal" data-target="#ScriptModal"><font style="color:white">Embed Script</font></a>
+						  </div>
+						  
+							
+							<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
+						</form>
+						<br/>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+			<!-- Add Script -->
+	  <div class="modal fade" id="insertScriptModal" tabindex="1"  role="dialog" aria-labelledby="registerModal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header" style="background-color:#212121;">
+						<p class="modal-title"><font style="color:white; size:50px;"><b> Embed Script </b></font></p>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color:white;">&times; </span></button>
+					</div>				
+						<div class="modal-body bg-dark">
+							<table>	
+								<tr>
+									<td><font style="color:white"> <b>Credential: &nbsp;</b> </font></td>
+									<td>
+										<input list="credentialList" class="form-control" id="scriptCredential" autocomplete="off" ng-change="filterScripts()" ng-model="sampleData"/>
+										<datalist id="credentialList">
+											<option ng-repeat="script in scriptCredential.clientLoginAccountList" value="{{script.loginAccountId}}">{{script.hostname}}</option>
+										</datalist>
+									</td>
+								</tr>
+								<tr>
+									<td><font style="color:white"> <b> SH File:</b></font> </td>
+									<td>
+									
+									<select name="shFile" class="custom-select" placeholder="Select SH File/s..." multiple="multiple">
+										<option ng-repeat="scriptData in scriptList.scriptList" ng-value="scriptData.scriptId">{{scriptData.name}}</option>
+									</select>		
+										
+									</td>
+								</tr>
+								
+								<tr>
+									<td><font style="color:white"> <b> Description : &nbsp; </b></font> </td>
+									<td><textarea class="form-control" name="description" placeholder="Insert Description Here"></textarea></td>
+									
+								</tr>
+							</table>
+						</div>
+						<div class="modal-footer bg-dark">
+							<input type="submit" value="Add" class="btnC btn-primary"/>
+							<input type="reset" value="Cancel" class="btnR btn-danger"/>
+						</div>
+					
+				</div>
+			</div>
+		</div>
+    
+		
+		<!-- Delete Script -->
+	  <div class="modal fade" id="ScriptModal" tabindex="1"  role="dialog" aria-labelledby="embedModal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header" style="background-color:#212121;">
+						<p class="modal-title"><font style="color:white; size:50px;"><b> Embed Script</b></font></p>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color:white;">&times; </span></button>
+					</div>
+					<!--  <form method="post" action="/denepdenttestcase/retrievearchiveddependenttestcase">-->
+						<div class="modal-body bg-dark">
+							<b style="color: white"> Script </b> <p></p>
+								
+							<table id ="datatable" class="table table-striped table-dark"  >
+							<thead class="thead-dark">
+							<!--  	<th><input type="checkbox" id="checkAll" style="width:15px;height:15px;"/></th> -->	
+								<th>Script</th>
+								<th>Description</th>
+								<th>Action</th>
+							</thead>
+								<tbody>
+								<tr th:each="scriptData, iter : ${scriptList}">
+									<td th:text="${scriptData.scriptId}"></td>
+									<td th:text="${scriptData.description}"></td>
+									<td><a th:href="'/dependenttestcase/deleteembedscript/' + ${iter.index} + '/' + ${testcaseNumber}"><button class="btn-danger">Delete</button></a></td>
+								</tr>
+							</tbody>
+						</table>
+								
+							</div>
+								<div class="modal-footer bg-dark">							
+							<!--  <input type="submit" value="Next" class="btnC btn-primary"/>-->
+							<!--  <input type="reset" value="Reset" class="btnR btn-danger"/>-->
+						</div>
+					<!-- </form>-->
+				</div>
+			</div>
+		</div>		
+		
+	<!-- Modal Success -->
+	<div id="success_tic" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-dialog-centered modal-lg">    
+			<div class="modal-content bg-dark" >    
+			    <div class="page-body bg">
+			    	<div class="head">  <br/> 
+			    <a href="/dependenttestcase/modifydependenttestcasepage/20191212-181205/3"></a>	
+			      <h4 style="margin-top:5px; color:white">Script Succesfully Embedded</h4>
+			      <h5 style="color:white">Click Confirm to Finished</h5>
+			    	</div>
+				  <h1 style="text-align:center; ">
+				  	<div class="checkmark-circle">
+				  	<div class="background"></div>
+				  	<div class="checkmark draw"></div>
+				</div></h1>
+			  </div>
+			  <br/>
+			  <div class="modal-footer">
+				 <a href="/dependenttestcase/modifydependenttestcasepage/20191212-181205/3"> <button class="btn btn-secondary"> Confirm </button></a>
+			  </div>
+			</div>
+		</div>
+  	</div>
+  	
+  	</div>
+  </main>
+ </div>
+		
+</body>
+</html>

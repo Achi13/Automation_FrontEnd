@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>New Template</title>
+
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/> 
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"/>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+<link rel="stylesheet" href="/fontawesome/css/all.min.css"/>
+<script language="JavaScript" src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/css/newtemplate.css"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="/fontawesome/css/all.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script src="/js/newtemplate_script.js" ></script>
+
+
+
+</head>
+<body ng-app="mainBody">
+<!--  
+<nav class="navbar navbar-expand-md navbar-light bg-dark">
+ <a class="navbar-brand pb-2" href="#"><img src="/pictures/OneAstonLogo.png" style=" width: 55px; height:55px;  vertical-align: middle;"/>
+  <img src="/pictures/oalogoword.png" style=" width: 165px; height:50px;  vertical-align: middle;"/>  </a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+		  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+		    <ul class="navbar-nav ml-auto">
+	       <li class="nav-item"> <img src="/pictures/User_icon.png" style="width: 45px; height:45px; padding-top:13px; padding-right:10px;"/></li> 
+		      <li class="nav-item"> <p th:text="'Hi, ' + ${user} + '!'"  style="color: white; font-family:Tahoma, Geneva, sans-serif; font-size:20px; padding-top:13px; padding-right:5px; "></p> </li> 
+		      	<li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style= "color:white;padding-top:19px;"> </a>
+           <ul class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdownMenuLink">
+           <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" style= "color:white" href="/home"><font style="color:white">Home</font></a>
+           <ul class="dropdown-menu bg-dark" >
+           <li class="dropdown-submenu" ><a class="dropdown-item" href="/index"><font style="color:white">OneLibrary</font></a>
+           </li> 
+               <li><a class="dropdown-item" href="/dependenttestcase/setreportlogpage"><font style="color:white">OneLog</font></a></li> 
+               <li><a class="dropdown-item" href="/campaign/dashboardpage"><font style="color:white">OneReport</font></a></li>
+               <li><a class="dropdown-item" href="/campaign/campaignpage"><font style="color:white">OneProject</font></a></li>
+               <li><a class="dropdown-item" href="/user/officerpage"><font style="color:white">OneAdmin</font></a></li>
+               <li><a class="dropdown-item" href="/client/createclientpage"><font style="color:white">OneClient</font></a></li>
+              
+              <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Submenu 1</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Subsubmenu1</a></li>
+                  <li><a class="dropdown-item" href="#">Subsubmenu1</a></li>
+                </ul>
+              </li>
+              
+              <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle" href="#">Submenu 2</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Subsubmenu2</a></li>
+                  <li><a class="dropdown-item" href="#">Subsubmenu2</a></li>
+                </ul>
+              </li>
+            
+              
+            </ul>
+          </li>
+          
+          <li><a class="dropdown-item" href="/user/accountsetingspage"><font style="color:white">Account Settings</font></a></li>
+          <li><a class="dropdown-item" href="/logout"><font style="color:white">Logout</font></a></li>
+                
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+-->	
+
+<div class="page-wrapper chiller-theme toggled">
+  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <i class="fas fa-bars"></i>
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+      <div class="sidebar-brand">
+        <a href="#">oneaston automation</a>
+        <div id="close-sidebar">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+            alt="User picture"/>
+        </div>
+        <div class="user-info">
+          <span class="user-name">
+            <strong th:text="${user}" style="text-transform:UPPERCASE"></strong>
+          </span>
+          <span class="user-role">Administrator</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div>
+      <div class="sidebar-menu">
+        <ul>
+          <li class="header-menu">
+            <span>General</span>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/home">
+              <i class="fa fa-tachometer-alt"></i>
+              <span>Views</span>
+            </a>  
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/index">
+              <i class="fa fa-folder"></i>
+              <span>Libraries</span>
+            </a>
+          </li>
+          <li>
+            <a href="/dependenttestcase/setreportlogpage">
+              <i class="fa fa-book"></i>
+              <span>Logs</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/campaign/campaignpage">
+              <i class="far fa-gem"></i>
+              <span>Projects</span>
+            </a>
+            
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/campaign/dashboardpage">
+              <i class="fa fa-chart-line"></i>
+              <span>Reports</span>
+            </a>
+
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="/client/createclientpage">
+              <i class="fa fa-globe"></i>
+              <span>Clients</span>
+            </a>
+           
+          </li>
+          <li class="header-menu">
+            <span>Extra</span>
+          </li>
+         <li>
+            <a href="/user/officerpage">
+              <i class="fa fa-user"></i>
+              <span>Users</span>
+            </a>
+          </li>
+          <li>
+            <a href="/calendar">
+              <i class="fa fa-calendar"></i>
+              <span>Calendar</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      <a href="#">
+        <i class="fa fa-bell" rel="tooltip" title="Notification" style="cursor:pointer;"></i> 
+      </a>
+      <a href="#">
+        <i class="fa fa-envelope" rel="tooltip" title="Message" style="cursor:pointer;"></i>
+      </a>
+      <a href="/user/accountsetingspage">
+        <i class="fa fa-cog" rel="tooltip" title="Account Settings" style="cursor:pointer;"></i>
+      </a>
+      <a href="/logout">
+        <i class="fa fa-power-off" rel="tooltip" title="Logout" style="cursor:pointer;"></i>
+      </a>
+    </div>
+  </nav>
+
+	<br/>  
+
+<main class="page-content">
+  <div class="container-fluid">	
+	<div class="row" ng-controller="mainController">
+	<!-- ALERT HERE -->
+				<div class="alert alert-success alert-dismissible fade show" th:if="${Info != null}">
+					<b>Success!</b><p th:text="${Info}"> </p>
+				    <button type="button" class="close" data-dismiss="alert">&times;</button>
+				</div>
+			<div class="col-md-12">
+				<div class="panel panel-primary bg-dark">
+					<div class="panel-heading text-center" style="background-color:#1f2122;">
+						<font color="#1f2122" style=" font-family: Arial Black, Gadget, sans-serif; font-size: 10px;">Automation Site(New Template)</font>
+					</div>
+					<div class="panel-body">
+						<form id="myForm" action="/templates/processcreatetemplate" method="POST">
+						<p></p>	
+							<table> 
+								<tr>
+									<td style="width:3%"></td>
+									<td><font style="color:white"> <b> Client Name: &nbsp; </b> </font> </td> 
+									<td>
+										<input required="required" name="clientName" list="client" class="form-control" autocomplete="off"/>
+											<datalist id="client">
+												<option th:each="clientData : ${clientList}" th:value="${clientData.clientName}" th:text="${clientData.clientId}"></option>
+											</datalist>
+										</td>
+										<td style="width:10%"></td>
+										<td><font style="color:white"> <b> Template Name: &nbsp; </b></font>  </td>
+										<td><input required="required" name="templateName" type ="text" class="form-control"/></td>
+										<td style="width:12%"></td>
+										<td><font style="color:white"> <b> Public: &nbsp; </b></font> </td>
+										<td>
+											<div class="switchToggle1">
+									    		<input type="checkbox" id="serverImport" onchange="changeServerImport()" checked="checked"/>
+									    		<label for="serverImport"></label>
+									    		<input  type="hidden" value="on" name="isPublic" id="serverimportVal"/>
+											</div>
+										</td>	
+									</tr>
+							</table>
+						<hr/>
+					
+							<table class="table table-striped table-dark " id ="datatable" >
+								<thead class="thead-dark">
+									<th>Label</th>
+									<th>Web Element Nature</th>
+									<th>Nature of Action</th>
+									<th>Trigger Enter</th>
+									<th>Screen Capture</th>
+									<th>Web Element Name</th>
+									<th>Action</th>	
+								</thead>
+							<tbody id="tbodyMain">
+								<tr id="row4">
+									<td><input type="text" name="label" class="form-control"/></td>	
+									<td>
+										<div class="input-field"> 
+											<select name="webElementNature" class="custom-select" >
+												<option value="name" selected="selected">name</option>
+												<option value="class">class</option>
+												<option value="id">id</option>
+												<option value="xpath">xpath</option>
+											</select>
+											</div>
+									</td>
+										<td>
+											<select name="natureOfAction" class="custom-select" id="natureOfAction1000" onchange="changeInput(1000)">
+												<option value="click">click</option>
+												<option value="input" selected="selected">input</option>
+												<option value="hover">hover</option>
+												<option value="compare">compare</option>
+												<option value="select">select</option>
+												<option value="datepicker">Date picker</option>
+											</select>
+										</td>
+										<td>
+											<input type="checkbox" name="triggerEnter" id="triggerEnter1000" onchange="changeTriggerEnter(1000)" style="width:25px;height:25px;"/>
+											<input type="text" name="triggerEnterValue" value="false" id="triggerEnterValue1000" hidden="hidden" style="width:25px;height:25px;"/>
+										</td>
+										<td>
+											<input type="checkbox" name="triggerEnter" value="false" id="screenCapture1000" onchange="changeScreenCapture(1000)" style="width:25px;height:25px;"/>
+											<input type="text" name="screenCaptureValue" value="false" id="screenCaptureValue1000" hidden="hidden" style="width:25px;height:25px;"/>
+										</td>
+										<!-- <td><input type="text" name="inputOutput" class="form-control" id="inputOutput1"/></td> -->
+										<td>
+											<input type="text" name="webElementName" class="form-control" id="webElementName1000" required="required"/>
+											<div align="center" class="switchToggle1"><input type="checkbox" checked="checked" onchange="toggleWebElementName(1000)" id="showWebElementName1000"/><label for ="showWebElementName1000"></label></div>										
+										</td>
+										<td> 
+											<div class="addButton btn btn-primary" onclick="addRow(this)"><i class="fas fa-plus"></i> </div>
+											<div onclick="removeRow(this)" class="removeButton btn btn-danger"><i class="fas fa-trash-alt"></i></div>
+										</td>
+									</tr>
+									
+									<tr ng-repeat="element in templateDataList.templateDataList track by $index">
+										<!-- Notes -->
+										<td>
+											<input type="text" name="label" value="{{element.label}}" class="form-control"/>
+										</td>
+										<!-- Web Element Nature -->
+										<td ng-switch="element.webElementNature">
+											
+											<select ng-switch-when="name" name="webElementNature" class="custom-select">
+												<option value="name" selected="selected">name</option>
+												<option value="class">class</option>
+												<option value="id">id</option>
+												<option value="xpath">xpath</option>
+											</select>
+											<select ng-switch-when="class" name="webElementNature" class="custom-select">
+												<option value="name">name</option>
+												<option value="class" selected="selected">class</option>
+												<option value="id">id</option>
+												<option value="xpath">xpath</option>
+											</select>
+											<select ng-switch-when="id" name="webElementNature" class="custom-select">
+												<option value="name">name</option>
+												<option value="class">class</option>
+												<option value="id" selected="selected">id</option>
+												<option value="xpath">xpath</option>
+											</select>
+											<select ng-switch-when="xpath" name="webElementNature" class="custom-select">
+												<option value="name">name</option>
+												<option value="class">class</option>
+												<option value="id">id</option>
+												<option value="xpath" selected="selected">xpath</option>
+											</select>
+										</td>
+										<!-- Nature of Action -->
+										<td ng-switch="element.natureOfAction">
+											<select ng-switch-when="click" name="natureOfAction" class="custom-select" ng-attr-id="{{'natureOfAction' + ($index+1)}}" ng-change="changeInput($index + 1)" ng-model="element.natureOfAction">
+												<option value="click" selected="selected">click</option>
+												<option value="input">input</option>
+												<option value="hover">hover</option>
+												<option value="compare">compare</option>
+												<option value="select">select</option>
+												<option value="datepicker">datepicker</option>
+											</select>
+											<select ng-switch-when="input" name="natureOfAction" class="custom-select" ng-attr-id="{{'natureOfAction' + ($index+1)}}" ng-change="changeInput($index + 1)" ng-model="element.natureOfAction">
+												<option value="click">click</option>
+												<option value="input" selected="selected">input</option>
+												<option value="hover">hover</option>
+												<option value="compare">compare</option>
+												<option value="select">select</option>
+												<option value="datepicker">datepicker</option>
+											</select>
+											<select ng-switch-when="hover" name="natureOfAction" class="custom-select" ng-attr-id="{{'natureOfAction' + ($index+1)}}" ng-change="changeInput($index + 1)" ng-model="element.natureOfAction">
+												<option value="click">click</option>
+												<option value="input">input</option>
+												<option value="hover" selected="selected">hover</option>
+												<option value="compare">compare</option>
+												<option value="select">select</option>
+												<option value="datepicker">datepicker</option>
+											</select>
+											<select ng-switch-when="compare" name="natureOfAction" class="custom-select" ng-attr-id="{{'natureOfAction' + ($index+1)}}" ng-change="changeInput($index + 1)" ng-model="element.natureOfAction">
+												<option value="click">click</option>
+												<option value="input">input</option>
+												<option value="hover">hover</option>
+												<option value="compare" selected="selected">compare</option>
+												<option value="select">select</option>
+												<option value="datepicker">datepicker</option>
+											</select>
+											<select ng-switch-when="select" name="natureOfAction" class="custom-select" ng-attr-id="{{'natureOfAction' + ($index+1)}}" ng-change="changeInput($index + 1)" ng-model="element.natureOfAction">
+												<option value="click">click</option>
+												<option value="input">input</option>
+												<option value="hover">hover</option>
+												<option value="compare">compare</option>
+												<option value="select" selected="selected">select</option>
+												<option value="datepicker">datepicker</option>
+											</select>
+											<select ng-switch-when="datepicker" name="natureOfAction" class="custom-select" ng-attr-id="{{'natureOfAction' + ($index+1)}}" ng-change="changeInput($index + 1)" ng-model="element.natureOfAction">
+												<option value="click">click</option>
+												<option value="input">input</option>
+												<option value="hover">hover</option>
+												<option value="compare">compare</option>
+												<option value="select">select</option>
+												<option value="datepicker" selected="selected">datepicker</option>
+											</select>
+										</td>
+										
+										<!-- Trigger Enter -->
+										<td>
+											<div ng-switch="element.triggerEnter">
+												<input ng-switch-when="true" type="checkbox" value="true" ng-attr-id="{{'triggerEnterValue' + ($index+1)}}" checked="checked" ng-change="changeTriggerEnter($index + 1)" ng-model="element.triggerEnter" style="width:25px;height:25px;"/>	
+												<input ng-switch-when="false" type="checkbox" value="false" ng-attr-id="{{'triggerEnterValue' + ($index+1)}}" ng-change="changeTriggerEnter($index + 1)" ng-model="element.triggerEnter" style="width:25px;height:25px;"/>
+											</div>
+											<div ng-switch="element.triggerEnter">
+												<input ng-switch-when="true" type="text" value="true" name="triggerEnterValue" ng-attr-id="{{'triggerEnterValue' + ($index+1)}}" hidden="hidden" style="width:25px;height:25px;"/>
+												<input ng-switch-when="false" type="text" value="false" name="triggerEnterValue" ng-attr-id="{{'triggerEnterValue' + ($index+1)}}" hidden="hidden" style="width:25px;height:25px;"/>
+											</div>
+										</td>
+										<!-- Screen Capture -->
+										<td>
+											<div ng-switch="element.screenCapture">
+												<input ng-switch-when="true" type="checkbox" value="true" ng-attr-id="{{'screenCapture' + ($index+1)}}" checked="checked" ng-change="changeScreenCapture($index + 1)" ng-model="element.screenCapture" style="width:25px;height:25px;"/>
+												<input ng-switch-when="false" type="checkbox" value="false" ng-attr-id="{{'screenCapture' + ($index+1)}}" ng-change="changeScreenCapture($index + 1)" ng-model="element.screenCapture" style="width:25px;height:25px;"/>
+											</div>
+											<div ng-switch="element.screenCapture">
+												<input ng-switch-when="true" type="text" value="true" name="screenCaptureValue" ng-attr-id="{{'screenCaptureValue' + ($index+1)}}" hidden="hidden" style="width:25px;height:25px;"/>
+												<input ng-switch-when="false" type="text" value="false" name="screenCaptureValue" ng-attr-id="{{'screenCaptureValue' + ($index+1)}}" hidden="hidden" style="width:25px;height:25px;"/>
+											</div>
+										</td>
+										<!-- Web Element -->
+										<td>
+											<input type="text" name="webElementName" value="{{element.webElementName}}" maxlength="500" class="form-control" ng-attr-id="{{'webElementName' + ($index+1)}}" hidden="hidden"/>
+										 	<div align="center" class="switchToggle1"><input type="checkbox" ng-click="toggleWebElementName($index + 1)" ng-attr-id="{{'showWebElementName' + ($index+1)}}"/><label ng-attr-for="{{'showWebElementName' + ($index + 1)}}"></label></div>
+										</td> 
+										<td>
+											<div onclick="addRow(this)" class="addButton btn btn-primary"><i class="fas fa-plus"></i></div>
+											<div onclick="removeRow(this)" class="removeButton btn btn-danger"><i class="fas fa-trash-alt"></i></div>
+										</td>
+										
+									</tr>
+									
+									<tr th:if="${universeId == 1}">
+										<td>
+											<div class="md-form">
+												<input type="text" value="Check Button" name="label" class="form-control"/>
+											</div>
+											
+										</td>
+										<td>
+										<div class="input-field"> 
+											<select name="webElementNature" class="custom-select" >
+												<option value="name">name</option>
+												<option value="class">class</option>
+												<option value="id" selected="selected">id</option>
+												<option value="xpath">xpath</option>
+											</select>
+											</div>
+										</td>
+										<td>
+											<select name="natureOfAction" class="custom-select" id="natureOfAction101" onchange="changeInput(101)">
+												<option value="click" selected="selected">click</option>
+												<option value="input">input</option>
+												<option value="hover">hover</option>
+												<option value="compare">compare</option>
+												<option value="select">select</option>
+												<option value="datepicker">Date picker</option>
+											</select>
+										</td>
+										<td>
+											<input type="checkbox" name="triggerEnter" id="triggerEnter101" onchange="changeTriggerEnter(101)" style="width:25px;height:25px;"/>
+											<input type="text" name="triggerEnterValue" value="false" id="triggerEnterValue1" hidden="hidden" style="width:25px;height:25px;"/>
+										</td>
+										<td>
+											<input type="checkbox" name="triggerEnter" value="false" id="screenCapture101" checked="checked" onchange="changeScreenCapture(101)" style="width:25px;height:25px;"/>
+											<input type="text" name="screenCaptureValue" value="true" id="screenCaptureValue1" hidden="hidden" style="width:25px;height:25px;"/>
+										</td>
+										<!-- <td><input type="text" name="inputOutput" class="form-control" id="inputOutput1"/></td> -->
+										<td >
+											<input type="text" name="webElementName" class="form-control" id="webElementName101" required="required"/>
+											<div align="center" class="switchToggle1"><input type="checkbox" checked="checked" onchange="toggleWebElementName(101)" id="showWebElementName101"/><label for ="showWebElementName101"></label></div>
+										</td>
+										<td> 
+											<div class="addButton btn btn-primary" onclick="addRow(this)"><i class="fas fa-plus"></i> </div>
+											<div onclick="removeRow(this)" class="removeButton btn btn-danger"><i class="fas fa-trash-alt"></i></div>
+										</td>
+										
+									</tr>
+									<tr th:if="${universeId == 1}">
+										<td>
+											<div class="md-form">
+												<input type="text" value="Submit Button" name="label" class="form-control"/>
+											</div>
+											
+										</td>
+										<td>
+										<div class="input-field"> 
+											<select name="webElementNature" class="custom-select" >
+												<option value="name">name</option>
+												<option value="class">class</option>
+												<option value="id" selected="selected">id</option>
+												<option value="xpath">xpath</option>
+											</select>
+											</div>
+										</td>
+										<td>
+											<select name="natureOfAction" class="custom-select" id="natureOfAction1" onchange="changeInput(1)">
+												<option value="click" selected="selected">click</option>
+												<option value="input">input</option>
+												<option value="hover">hover</option>
+												<option value="compare">compare</option>
+												<option value="select">select</option>
+												<option value="datepicker">Date picker</option>
+											</select>
+										</td>
+										<td>
+											<input type="checkbox" name="triggerEnter" id="triggerEnter100" onchange="changeTriggerEnter(100)" style="width:25px;height:25px;"/>
+											<input type="text" name="triggerEnterValue" value="false" id="triggerEnterValue1" hidden="hidden" style="width:25px;height:25px;"/>
+										</td>
+										<td>
+											<input type="checkbox" name="triggerEnter" value="false" id="screenCapture100" checked="checked" onchange="changeScreenCapture(100)" style="width:25px;height:25px;"/>
+											<input type="text" name="screenCaptureValue" value="true" id="screenCaptureValue1" hidden="hidden" style="width:25px;height:25px;"/>
+										</td>
+										<!-- <td><input type="text" name="inputOutput" class="form-control" id="inputOutput1"/></td> -->
+										<td >
+											<input type="text" name="webElementName" class="form-control" id="webElementName100" required="required"/>
+											<div align="center" class="switchToggle1"><input type="checkbox" checked="checked" onchange="toggleWebElementName(100)" id="showWebElementName100"/><label for ="showWebElementName100"></label></div>
+											
+										</td>
+										<td > 
+											<div class="addButton btn btn-primary" onclick="addRow(this)"><i class="fas fa-plus"></i> </div>
+											<div onclick="removeRow(this)" class="removeButton btn btn-danger"><i class="fas fa-trash-alt"></i></div>
+										</td>
+									</tr>
+								</tbody>		
+						</table>
+							<hr/>
+							<div style="text-align:right;padding-right:10px;">
+								<button type="button" class="btn btn1" data-toggle="modal" data-target="#ViewImportModal">Import File</button>
+								
+								<input type="submit" name="submit" value="Submit" class="btn btn1" />
+									
+								
+								<a href="/index" class="btn btn1">Cancel</a>
+								
+							</div>
+						
+						</form>
+				<br/>		
+
+	<!-- Import File -->
+	
+	<div class="modal fade" id="ViewImportModal" tabindex="1"  role="dialog" aria-labelledby="registerModal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header" style="background-color:#212121;">
+						<p class="modal-title"><font style="color:white; size:50px;"><b> Import File </b></font></p>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color:white;">&times; </span></button>
+					</div>
+					<div class="modal-body bg-dark">
+						&nbsp; &nbsp;
+						<b style="color:white">Choose Text File: &nbsp;</b> 
+						<input type="file" id="templateFile" required="required" style="color:white"/>
+					<p></p>
+					
+					<div style="text-align:right">
+						<button class="btn btn-secondary" style="width:20%; " ng-click="uploadTemplate()">Upload template</button>
+					</div>
+				</div>
+					<div class="modal-footer bg-dark"></div>
+	
+				
+				</div>
+			</div>
+		</div>
+					
+					</div>			
+				</div>
+			</div>
+		</div>
+	</div>
+</main>	
+			
+	</div>
+	
+</body>
+</html>
